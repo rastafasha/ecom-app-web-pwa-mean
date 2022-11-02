@@ -1,0 +1,145 @@
+<app-header></app-header>
+<div class="contact" id="page">
+
+
+    <section class="sub-header shop-layout-1">
+        <img class="rellax bg-overlay" src="./assets/images/sub-header/09.jpg" alt="">
+        <div class="overlay-call-to-action"></div>
+        <h3 class="heading-style-3">Contact Us</h3>
+    </section>
+    <section class="boxed-sm">
+        <div class="container">
+            <div class="row">
+                <div class="row icon-box-contact-wrapper">
+                    <div class="row main">
+                        <div class="col-md-10">
+                            <div class="col-md-4">
+                                <div class="icon-box">
+                                    <div *ngIf="configuracion.direccion">
+                                        <i class="fa fa-map-marker"></i>
+                                        <p>{{configuracion.direccion}}</p>
+                                    </div>
+                                    <div *ngIf="configuracion.horarios">
+                                        <p>{{configuracion.horarios}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="icon-box">
+                                    <div *ngIf="configuracion.telefono_uno">
+                                        <a href="tel:{{configuracion.telefono_uno}} ">
+                                            <i class="fa fa-mobile"></i><br> {{configuracion.telefono_uno}}
+                                        </a>
+
+                                    </div>
+                                    <div *ngIf="configuracion.telefono_dos">
+                                        <a href="tel:{{configuracion.telefono_dos}} ">
+                                      {{configuracion.telefono_dos}}</a>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div class="icon-box">
+                                    <div *ngIf="configuracion.email_uno">
+                                        <a href="mailto:{{configuracion.email_uno}} ">
+                                            <i class="fa fa-envelope-o"></i><br> {{configuracion.email_uno}} </a>
+
+                                    </div>
+                                    <div *ngIf="configuracion.email_dos">
+                                        <a href="mailto:{{configuracion.email_dos}} ">
+                                      {{configuracion.email_dos}} </a>
+
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="widget-social align-left">
+                                <ul>
+                                    <li *ngIf="configuracion.facebook">
+                                        <a class="facebook" data-toggle="tooltip" title="Facebook" target="_blank" href="{{configuracion.facebook}}">
+                                            <i class="fa fa-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <!-- <li *ngIf="configuraciones[0].pinterest">
+                                        <a class="pinterest" data-toggle="tooltip" title="Pinterest" target="_blank" href="{{configuraciones[0].pinterest}}">
+                                            <i class="fa fa-pinterest"></i>
+                                        </a>
+                                    </li> -->
+                                    <li *ngIf="configuracion.twitter">
+                                        <a class="twitter" data-toggle="tooltip" title="Twitter" target="_blank" href="{{configuracion.twitter}}">
+                                            <i class="fa fa-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <li *ngIf="configuracion.youtube">
+                                        <a class="youtube" data-toggle="tooltip" title="Youtube" target="_blank" href="{{configuracion.youtube}}">
+                                            <i class="fa fa-youtube"></i>
+                                        </a>
+                                    </li>
+                                    <li *ngIf="configuracion.instagram">
+                                        <a class="instagram" data-toggle="tooltip" title="Instagram" target="_blank" href="{{configuracion.instagram}}">
+                                            <i class="fa fa-instagram"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" *ngIf="configuracion.iframe_mapa">
+            <div class="row">
+                <div class="map-canvas" id="js-map-canvas">
+                    <iframe class="mapa" [src]="getMapIframe(configuracion.iframe_mapa)" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="container" *ngIf="!configuracion.iframe_mapa">
+            NO hay mapa
+        </div>
+
+        <div class="container">
+            <div class="row form-contact">
+                <!-- <app-contact-form></app-contact-form> -->
+                <!-- <div class="row main">
+                    <form>
+                        <div class="col-md-12">
+                            <div class="form-group organic-form xs-radius">
+                                <textarea class="form-control" placeholder="Your Message" rows="6"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group organic-form xs-radius">
+                                <input class="form-control" placeholder="Your Name">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group organic-form xs-radius">
+                                <input class="form-control" placeholder="Your Email" type="email">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group organic-form xs-radius">
+                                <input class="form-control" placeholder="Phone Number">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group organic-form xs-radius">
+                                <button class="btn btn-brand pill">SEND EMAIL</button>
+                            </div>
+                        </div>
+                    </form>
+                </div> -->
+            </div>
+        </div>
+    </section>
+</div>
+<app-footer></app-footer>

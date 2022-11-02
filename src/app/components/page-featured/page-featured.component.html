@@ -1,0 +1,28 @@
+<section class="boxed-sm mt-5">
+    <div class="container">
+
+        <div class="row blog-v reverse">
+            <div class="col-md-12" *ngFor="let item of pages ">
+                <div class="post">
+                    <div class="img-wrapper js-set-bg-blog-thumb imagenmarco">
+                        <a [routerLink]="['../about', item._id]">
+                            <img class="img-responsive" [src]="item.img | imagenPipe: 'pages'" alt="{{item.titulo}}" />
+                        </a>
+                    </div>
+                    <div class="desc">
+                        <h3>
+                            <a [routerLink]="['../about', item._id]">{{item.titulo}}</a>
+                        </h3>
+                        <p class="meta">
+                            <span class="time">{{item.createdAt | date:'mediumDate'}}</span>
+                        </p>
+                        <p class="sapo">{{item.descripcion | slice:0:120}}...</p>
+                        <a class="read-more" [routerLink]="['../about', item._id]">READ MORE
+                          <i class="fa fa-long-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

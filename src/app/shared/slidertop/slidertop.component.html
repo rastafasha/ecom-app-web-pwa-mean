@@ -1,0 +1,59 @@
+<div id="mycarr" class="carousel slide slide1 carousel-fade ">
+    <!-- Indicators -->
+    <!--ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol-->
+
+    <!-- Wrapper for Slides -->
+    <div class="carousel-inner" *ngFor="let slider of sliders | slice:0:1 ">
+
+        <div class="item active">
+            <div class="desktop">
+                <div class="BannPpal1 BannPpal sli header" [ngStyle]="{'background-image': 'url(`+ {{imagenSerUrl}}/sliders/slider.img +`)'}">
+                    <!-- <div class="BannPpal1 BannPpal sli header" [ngStyle]="{'background-image': '(' + slider.img | imagenPipe: 'sliders' + ')'} "> -->
+                    <div class="container">
+                        <div class="textos">
+                            <h3 class="Up ">{{slider.first_title}}</h3>
+                            <p class="Up ">{{slider.description}}</p><br><br>
+                            <div class="text-center">
+                                <a href="{{slider.enlace}}" target="{{slider.target}}" class="btn btn-success btn-lg ">Mas Info  </a>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- <div class="movil">
+              <div class="BannPpal1 BannPpal sli header" [ngStyle]="{'background-image': 'url(' + slider.imagemovil + ')'}">
+                  <div class="container">
+                      <div class="textos">
+                          <h3 class="Up {{slider.is_activeText}}">{{slider.title}}</h3>
+                          <p class="Up {{slider.is_activeText}}">{{slider.description}}</p><br><br>
+                          <div class="text-center">
+                              <a href="{{slider.enlace}}" target="{{slider.target}}" class="btn btn-success btn-lg {{slider.is_activeBot}}">{{slider.boton}}  </a>
+
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+          </div> -->
+        </div>
+
+        <a href="#sli3" class="ancla">
+            <div class="mouseicon "></div>
+        </a>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#mycarr" data-slide="prev">
+        <span class="icon-prev"></span>
+    </a>
+    <a class="right carousel-control" href="#mycarr" data-slide="next">
+        <span class="icon-next"></span>
+    </a>
+
+</div>

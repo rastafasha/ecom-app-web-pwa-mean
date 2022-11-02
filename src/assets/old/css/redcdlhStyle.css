@@ -1,0 +1,163 @@
+@charset "UTF-8";
+
+/* CSS Document */
+
+
+/*Author: Malcolm Córdova @malcolmcordova mercadocreativo@gmail.com www.malcolmcordova.com*/
+
+.mantengase {
+    background-color: #fff;
+    height: auto;
+}
+
+.contenedor {
+    padding: 60px 0px;
+    height: auto;
+    min-height: 100vh;
+    color: #333;
+}
+
+.mantengase h1 {
+    font-size: 84px;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+}
+
+.mantengase h2 {
+    font-size: 60px;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+
+.mantengase p {
+    padding-top: 10px;
+    width: 80%;
+}
+
+.mantengase h3 {
+    font-size: 40px;
+    border-left: 6px solid #fff;
+    padding-left: 10px;
+    color: #fff;
+}
+
+.soluciones {
+    padding: 30px 0px;
+    height: auto;
+    min-height: 0vh;
+    background-color: #fff;
+    border-radius: 28px 28px 0px 0px;
+    box-shadow: 0 15px 30px 0 rgba(0, 0, 0, .11), 0 5px 15px 0 rgba(0, 0, 0, .08);
+    position: relative;
+    top: -30px;
+}
+
+.soluciones .row {
+    margin-bottom: 40px;
+}
+
+.soluciones-inicio {
+    padding: 0px;
+    height: 0px;
+    top: 0;
+}
+
+.cuadroicon {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    min-height: 150px;
+    margin-bottom: 30px;
+}
+
+.icon {
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+.icon img {
+    width: 30px;
+    display: block;
+    margin: 0 auto;
+}
+
+.marketing p,
+.mantengase p,
+.final .info2 p,
+.soluciones p,
+.web .info2 p {
+    font-size: 14px;
+}
+
+@media(max-width:768px) {
+    .mantengase .partner {
+        width: 60%;
+        height: auto;
+        margin-bottom: 40px;
+        position: relative;
+    }
+    .icon-info .info-icon p {
+        font-size: 16px;
+        color: #000;
+    }
+    .mantengase h1 {
+        font-size: 64px;
+    }
+    .mantengase {
+        background-color: #fff;
+        height: auto;
+        overflow: hidden;
+        overflow-x: scroll;
+        overflow-y: scroll;
+    }
+    .soluciones {
+        padding: 30px 15px;
+    }
+}
+
+@media(min-width:769px) {
+    .mantengase .partner {
+        width: 60%;
+        height: 34px;
+        margin: 0 auto;
+        margin-bottom: 40px;
+        position: relative;
+        top: 80px;
+    }
+}
+
+@media(min-width:1600px) {
+    .soluciones {
+        top: -40px;
+    }
+}
+
+.cp_oculta {
+    display: none;
+}
+
+
+/*---modales---*/
+
+.modal .modal-header {
+    background-color: var(--morado);
+}
+
+.modal .modal-header h5 {
+    border-left: 4px solid #fff;
+    padding-left: 10px;
+    color: #fff;
+    font-size: 20px;
+}
+
+.modal .modal-body ul {
+    padding-left: 20px;
+}
+
+.modal-header .close {
+    margin-top: -34px;
+}

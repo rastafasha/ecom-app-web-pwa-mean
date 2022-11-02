@@ -1,0 +1,95 @@
+<footer class="footer-style-2">
+    <div class="p-2 bg-dark text-white text-right">
+        Server status
+        <span *ngIf="wsService.socketStatus" class="text-success">Online</span>
+        <span *ngIf="!wsService.socketStatus" class="text-danger">Offline</span>
+    </div>
+    <div class="footer-style-2-inner container">
+        <div class="container">
+            <div class="row">
+                <div class="widget-footer widget-text col-first col-small">
+                    <a routerLink="/home">
+                        <img class="logo-footer" src="./assets/images/logo.png" alt="Logo " />
+                    </a>
+                    <p>Suspendisse ut diam quis turpis convallis tempus. Sed ultrices lobortis dolor laoreet luctus. Morbi ornare nisi vitae tellus euismod bibendum. Pellentesque posuere iaculis volutpat. </p>
+
+                </div>
+                <div class="widget-footer widget-link col-second col-small">
+                    <div class="list-link">
+                        <h4 class="h4 heading">SHOP</h4>
+                        <ul>
+                            <li *ngFor="let cat of categories ">
+                                <a [routerLink]="['../category', cat.nombre]">{{cat.nombre}}</a>
+                            </li>
+                            <li>
+                                <a routerLink="../cursos" routerLinkActive="active">Cursos</a>
+                            </li>
+                            <li>
+                                <a routerLink="../productos" routerLinkActive="active">Productos</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="list-link">
+                        <h4 class="h4 heading">SUPPORT</h4>
+                        <ul>
+                            <li>
+                                <a routerLink="../contact" routerLinkActive="active">Contact</a>
+                            </li>
+                            <li>
+                                <a routerLink="../blogs" routerLinkActive="active">Blogs</a>
+                            </li>
+                            <li>
+                                <a routerLink="../about" routerLinkActive="active">About</a>
+                            </li>
+                            <li>
+                                <a routerLink="../faq" routerLinkActive="active">FAQ</a>
+                            </li>
+                            <li>
+                                <a routerLink="../privacy-policy" routerLinkActive="active">Privacy Policy</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="widget-footer widget-newsletter-footer col-last col-medium">
+                    <h4 class="h4 heading">NEWSLETTER</h4>
+                    <p>Subscribe now to get daily updates</p>
+
+                    <form class="organic-form form-inline btn-add-on circle border">
+                        <div class="form-group">
+                            <input class="form-control pill transparent" placeholder="Your Email..." type="email" />
+                            <button class="btn btn-brand circle" type="submit">
+              <i class="fa fa-envelope-o"></i>
+            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <!-- <div class="copy-right style-2 container">
+      <div class="container">
+          <div class="row">
+              <div class="copy-right-inner">
+                  <p>Copyright © 2017 Designed by AuThemes. All rights reserved.</p>
+                  <div class="widget widget-footer widget-footer-link-inline">
+                      <ul class="list-unstyle">
+                          <li>
+                              <a href="#">Term of Uses</a>
+                          </li>
+                          <li>
+                              <a href="#">Privacy</a>
+                          </li>
+                          <li>
+                              <a href="#">Shipping</a>
+                          </li>
+                          <li>
+                              <a href="#">Policy</a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div> -->
+</footer>

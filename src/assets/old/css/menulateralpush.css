@@ -1,0 +1,217 @@
+@charset "UTF-8";
+
+/* CSS Document */
+
+
+/*Author: Malcolm Córdova @malcolmcordova mercadocreativo@gmail.com www.malcolmcordova.com*/
+
+a:active,
+a:hover,
+.active1 {
+    color: #000;
+}
+
+header {
+    width: 100%;
+    height: 50px;
+    margin: 0 auto;
+    position: fixed;
+    z-index: 99;
+}
+
+header nav {
+    float: right;
+}
+
+header nav ul {
+    display: block;
+    padding-left: 20px;
+}
+
+header nav ul li {
+    display: list-item;
+    list-style: none;
+}
+
+header nav ul li a {
+    display: list-item;
+    color: #333;
+    margin: 0 0.1em;
+}
+
+header nav a:after {
+    content: attr(data-info);
+    color: #ccc;
+    position: absolute;
+    width: 600%;
+    top: 120%;
+    text-align: right;
+    right: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+header nav a:hover:after {
+    opacity: 1;
+}
+
+header nav a:hover {
+    text-decoration: none;
+}
+
+.main>section {
+    max-width: 260px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.main>section h2 {
+    font-weight: 300;
+    color: #ccc;
+}
+
+.menn {
+    font-family: 'DIN-Regular';
+    font-size: 20px;
+    cursor: pointer;
+    position: fixed;
+    top: 25px;
+    right: 16%;
+    float: right;
+    color: var(--azul);
+    z-index: 99999;
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.menn:hover {
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+    color: var(--azul);
+}
+
+@media only screen and (max-device-width: 600px) and (orientation: portrait) {
+    header nav ul {
+        padding-left: 5px;
+    }
+    .menn {
+        top: 15px;
+        right: 6%;
+    }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1400px) {
+    .menn {
+        top: 15px;
+        right: 6%;
+    }
+}
+
+@media only screen and (min-width: 1800px) and (max-width: 1930px) {
+    .menn {
+        top: 15px;
+        right: 20%;
+    }
+}
+
+.closebtn {
+    font-family: 'DIN-Regular';
+    position: absolute;
+    top: 12px;
+    left: -66px;
+    font-size: 14px;
+    margin-left: 50px;
+    text-transform: uppercase;
+}
+
+.main>section button:hover {
+    background: var(--azulclaro);
+}
+
+.main>section button.active {
+    background: var(--azulclaro);
+}
+
+.main>section button.disabled {
+    background: #aaa;
+    pointer-events: none;
+}
+
+.icon-drop:before,
+.icon-arrow-left:before {
+    font-family: 'fontawesome';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 2;
+    text-align: center;
+    color: var(--azulclaro);
+    -webkit-font-smoothing: antialiased;
+    text-indent: 8000px;
+    padding-left: 8px;
+}
+
+.container>header nav a:hover:before {
+    color: #fff;
+}
+
+.icon-drop:before {
+    content: "\e000";
+}
+
+.icon-arrow-left:before {
+    content: "\f060";
+}
+
+nav ul.children,
+nav ul.children1 {
+    display: none;
+    color: var(--azul);
+    font-size: 16px;
+    position: relative;
+    z-index: 999999;
+    width: auto;
+    padding: 0px 5px;
+    margin-top: 0px;
+}
+
+nav ul.children li,
+nav ul.children1 li {
+    display: block;
+    overflow: hidden;
+    padding: 5px;
+}
+
+nav ul.children li a,
+nav ul.children1 li a {
+    display: block;
+    color: var(--azul);
+}
+
+nav ul.children li a,
+nav ul.children1 li a {
+    position: relative;
+    top: 3px;
+    margin-right: 0;
+    margin-left: 5px;
+    text-align: left;
+}
+
+nav ul li .children,
+nav ul li .children1 {
+    display: none !important;
+}
+
+.children.open,
+.children1.open {
+    display: block !important;
+    padding-bottom: 10px;
+    border-bottom: transparent;
+}

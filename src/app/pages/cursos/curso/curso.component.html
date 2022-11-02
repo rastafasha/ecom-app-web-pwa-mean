@@ -1,0 +1,220 @@
+<app-header></app-header>
+<div *ngIf="!curso">
+    <h1 class="text-center">No hay info</h1>
+</div>
+<div *ngIf="curso">
+    <div class="shop-detail-3 woocommerce" id="page">
+
+        <section class="sub-header shop-detail-1">
+            <img class="rellax bg-overlay" [src]="curso.img | imagenPipe: 'cursos'" alt="{{curso.titulo}}">
+            <!-- <img class="rellax bg-overlay" src="{{imagenSerUrl}}/cursos/{{curso.img}}" alt="{{curso.titulo}}"> -->
+            <div class="overlay-call-to-action"></div>
+            <h3 class="heading-style-3" style="color:#ccc">{{curso.titulo}}</h3>
+        </section>
+        <section class="boxed-sm">
+            <div class="container">
+                <div class="row product-detail">
+                    <div class="row product-detail-wrapper">
+                        <div class="col-md-8">
+                            <div class="col-md-6">
+                                <div class="woocommerce-product-gallery vertical">
+                                    <div class="main-carousel">
+                                        <div class="item">
+                                            <img class="img-responsive" [src]="curso.img | imagenPipe: 'cursos'" alt="{{curso.titulo}} thumbnail">
+                                            <!-- <img class="img-responsive" src="{{imagenSerUrl}}/cursos/{{curso.img}}" alt="{{curso.titulo}} thumbnail"> -->
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="summary">
+                                    <div class="desc">
+                                        <div class="header-desc">
+                                            <h2 class="product-title">{{curso.titulo}} </h2>
+                                            <p class="price precioviejo">${{curso.precio_antes}} </p>
+                                            <p class="price">${{curso.precio_ahora}} </p>
+                                        </div>
+                                        <div class="body-desc">
+                                            <div class="woocommerce-product-details-short-description">
+                                                <p>{{curso.info_short}} </p>
+                                            </div>
+                                        </div>
+                                        <div class="footer-desc">
+                                            <div class="group-btn-control-wrapper">
+                                                <!-- <input class="qty" step="1" min="0" max="" name="{{item.quantity}}" value="{{item.quantity}}" title="Qty" size="4" pattern="[0-9]*" inputmode="numeric" type="number"> -->
+                                                <button href="#" class="btn btn-outline-success" (click)="addToCart()"> <i class="fa fa-cart"></i> add to cart</button>
+                                                <!-- <button href="#" class="btn btn-brand no-radius" (click)="addToCart()">ADD TO CART</button> -->
+                                                <button class="btn btn-wishlist btn-brand-ghost no-radius">
+                                                  <i class="fa fa-heart"></i>
+                                                </button>
+                                            </div>
+                                            <!-- <form class="cart">
+                                                <div class="quantity buttons-added">
+                                                    <input class="minus" value="-" type="button">
+                                                    <input class="input-text qty text" step="1" min="1" max="" name="quantity" value="1" title="Qty" size="4" pattern="[0-9]*" inputmode="numeric" type="number">
+                                                    <input class="plus" value="+" type="button">
+                                                </div>
+                                                <div class="group-btn-control-wrapper">
+                                                    <button class="btn btn-brand no-radius">ADD TO CART</button>
+                                                    <button class="btn btn-wishlist btn-brand-ghost no-radius">
+                      <i class="fa fa-heart"></i>
+                    </button>
+                                                </div>
+                                            </form> -->
+
+                                        </div>
+                                    </div>
+                                    <div class="product-meta">
+                                        <!-- <p class="posted-in" *ngFor="let cat of categories | slice:1:2;  index as i ">Category:
+                                            <a [routerLink]="['/category', cat.category_name]" rel="tag" value="{{curso.category_id}}">{{cat.category_name}} </a>
+                                        </p> -->
+                                        <!-- <p class="tagged-as" *ngFor="let cat of categories">Tags:
+                                        <a href="#" rel="tag">{{cat.category_name}}</a>,
+                                    </p> -->
+
+                                        <p class="id">Subcategoria:
+                                            <br> {{curso.subcategoria}}
+                                        </p>
+                                    </div>
+
+                                    <!-- <div class="widget-social align-left">
+                                        <ul>
+                                            <li *ngIf="configuracion.facebook">
+                                                <a class="facebook" data-toggle="tooltip" title="Facebook" target="_blank" href="{{configuraciones[0].facebook}}">
+                                                    <i class="fa fa-facebook"></i>
+                                                </a>
+                                            </li>
+                                            <li *ngIf="configuracion.pinterest">
+                                                <a class="pinterest" data-toggle="tooltip" title="Pinterest" target="_blank" href="{{configuraciones[0].pinterest}}">
+                                                    <i class="fa fa-pinterest"></i>
+                                                </a>
+                                            </li>
+                                            <li *ngIf="configuracion.twitter">
+                                                <a class="twitter" data-toggle="tooltip" title="Twitter" target="_blank" href="{{configuraciones[0].twitter}}">
+                                                    <i class="fa fa-twitter"></i>
+                                                </a>
+                                            </li>
+                                            <li *ngIf="configuracion.youtube">
+                                                <a class="youtube" data-toggle="tooltip" title="Youtube" target="_blank" href="{{configuraciones[0].youtube}}">
+                                                    <i class="fa fa-youtube"></i>
+                                                </a>
+                                            </li>
+                                            <li *ngIf="configuracion.instagram">
+                                                <a class="instagram" data-toggle="tooltip" title="Instagram" target="_blank" href="{{configuraciones[0].instagram}}">
+                                                    <i class="fa fa-instagram"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div> -->
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <app-cart></app-cart>
+                        </div>
+                    </div>
+                </div>
+                <div class="woocommerce-tabs">
+                    <div class="row">
+                        <div class="col-md-12 woocommerce-tabs-inner">
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <ul class="tabs tab-style-2" role="tablist">
+                                        <li class="active" role="presentation">
+                                            <a href="#Description" aria-controls="Description" role="tab" data-toggle="tab">Description</a>
+                                        </li>
+                                        <li role="presentation">
+                                            <a href="#Additional-Information" aria-controls="Additional-Information" role="tab" data-toggle="tab">Additional Information</a>
+                                        </li>
+                                        <li role="presentation">
+                                            <a href="#Review" aria-controls="Review" role="tab" data-toggle="tab">Review (2)</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="tab-content tab-content-style-2">
+                                <div class="tab-pane fade in active" id="Description" role="tabpanel">
+                                    <p [innerHTML]="curso.detalle"></p>
+                                </div>
+                                <div class="tab-pane fade" id="Additional-Information" role="tabpanel">
+                                    <iframe class="videom" [src]="getVideoIframe(curso.video_review)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; " allowfullscreen></iframe>
+                                    <table class="shop_attributes table table-striped table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <th>Creado </th>
+                                                <td>
+                                                    <p>{{curso.createdAt}}</p>
+                                                </td>
+                                            </tr>
+                                            <div *ngIf="curso.updatedAt">
+                                                <tr>
+                                                    <th>Ultima actualización</th>
+                                                    <td>
+                                                        <p>{{curso.updatedAt}}</p>
+                                                    </td>
+                                                </tr>
+                                            </div>
+
+                                            <tr>
+                                                <th>Artículo Disponible?</th>
+                                                <td>
+                                                    <div *ngIf="curso.isFeatured == true">
+                                                        <p>Si</p>
+                                                    </div>
+                                                    <div *ngIf="curso.isFeatured == false">
+                                                        <p>No</p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade" id="Review" role="tabpanel">
+                                    <ol class="comment-list">
+                                        <li>
+                                            <div class="the-comment">
+                                                <div class="avatar">
+                                                    <img class="avatar" alt="avatar" src="./assets/images/comment/01.png">
+                                                </div>
+                                                <div class="comment-box">
+                                                    <div class="comment-author meta">
+                                                        <p class="author">Mark Hunt</p>
+                                                        <p class="time">15 March 2017</p>
+                                                    </div>
+                                                    <div class="comment-text">
+                                                        <p>This is a test … Quisque ligulas ipsum, euismod atras vulputate iltricies etri elit.This is a test … </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="the-comment">
+                                                <div class="avatar">
+                                                    <img class="avatar" alt="avatar" src="./assets/images/comment/02.png">
+                                                </div>
+                                                <div class="comment-box">
+                                                    <div class="comment-author meta">
+                                                        <p class="author">Lori Peters</p>
+                                                        <p class="time">16 March 2017</p>
+                                                    </div>
+                                                    <div class="comment-text">
+                                                        <p>This is a reply test … </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<app-footer></app-footer>

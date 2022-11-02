@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+/* CSS Document */
+
+
+/*Author: Malcolm cordova @malcolmcordova mercadocreativo@gmail.com www.malcolmcordova.com*/
+
+:root {
+    --vinotinto: #911b36;
+}
+
+body {
+    position: relative;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    font-family: 'HelveticaNeueLTPro-Th';
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'HelveticaNeueLTPro-Th' !important;
+    color: #911b36;
+}
+
+p {
+    font-family: 'HelveticaNeueLTPro-Roman' !important;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+a {
+    text-decoration: none
+}
+
+hr {
+    border-bottom: 1px solid #ccc;
+}
+
+b {
+    font-family: 'HelveticaNeueLTStd-Roman';
+    font-weight: bold;
+}
+
+.active {
+    color: var(--vinotinto) !important;
+}
+
+img.logo-footer {
+    display: block;
+    width: 100%;
+}
+
+.header-style-3 {
+    padding: 20px 0;
+}
+
+.sidemenu {
+    display: none;
+}
+
+@media (max-width:768px) {
+    .sidemenu {
+        display: block;
+        z-index: 9999;
+        padding: 20px;
+        height: 100vh;
+        position: fixed;
+        top: 90px;
+        background-color: #fff;
+        width: 70%;
+        left: -70%;
+        transition: all .5s;
+    }
+    .sidemenu.active {
+        display: block;
+        left: 0;
+    }
+}

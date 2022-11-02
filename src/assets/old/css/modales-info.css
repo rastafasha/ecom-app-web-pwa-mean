@@ -1,0 +1,219 @@
+@charset "UTF-8";
+
+/* CSS Document */
+
+
+/*Author: Malcolm Córdova @malcolmcordova mercadocreativo@gmail.com www.malcolmcordova.com*/
+
+.resultado {
+    width: 100%;
+    height: auto;
+    position: relative;
+    float: left;
+    opacity: 1;
+    display: flex;
+    justify-content: space-between;
+    color: #333 !important;
+}
+
+.resultado .inforesult {
+    border-bottom: 1px solid var(--fondo);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.headerTope .logo img {
+    background-color: #3636a8;
+    height: 40px;
+}
+
+.headerTope .logo img {
+    height: 30px;
+}
+
+.resultado .inforesult {
+    width: 100%;
+    display: block;
+    margin: auto;
+}
+
+.resultado .inforesult h4{
+    color: #fff;
+}
+
+.scrolling {
+    overflow: scroll;
+    margin-top: 50px;
+    width: 100%;
+}
+
+.inforesult {
+    display: block;
+    overflow: hidden;
+    height: auto;
+    max-height: 150px;
+    padding: 20px;
+    overflow-y: scroll;
+    border: 1px solid #fff;
+    box-shadow: 0 15px 30px 0 rgba(0, 0, 0, .11), 0 5px 15px 0 rgba(0, 0, 0, .08);
+}
+
+.inforesult h2 {
+    color: var(--azul);
+    font-weight: 600;
+    font-size: 16px;
+    padding-top: 0;
+    margin-top: 0;
+}
+
+.card h6 {
+    color: var(--azullogo) !important;
+    font-weight: 600;
+    font-size: 18px;
+    padding-top: 0;
+    margin-top: 0;
+}
+
+.inforesult ul {
+    display: block;
+    height: auto;
+    max-height: 150px;
+}
+
+.inforesult ul li {
+    color: #000;
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+
+.titulomapa {
+    background-color: #006837;
+    color: #fff;
+    font-family: 'HelveticaNeueLTStd-Roman';
+    font-size: 16px;
+    padding: 10px;
+    transform: rotate(-90deg);
+    position: relative;
+    top: 90px;
+    left: -175px;
+    width: 260px;
+    height: 50px;
+    clear: both;
+    text-align: center;
+    opacity: 1 !important;
+}
+
+.titulobloc:hover {
+    cursor: pointer;
+}
+
+.headerTope {
+    color: #fff;
+    position: fixed;
+    z-index: 999;
+    width: 48%;
+}
+
+@media(max-width:780px) {
+    .resultado {
+        padding: 10px;
+    }
+}
+
+@media(max-width:1030px) {
+    .resultado {
+        min-height: 200px;
+        padding: 10px;
+    }
+    .headerTope {
+        padding-left: 10px;
+    }
+    .mapa {
+        padding: 10px;
+    }
+}
+
+@media(min-width:768px) {
+    .inforesult h2 {
+        font-size: 39px;
+    }
+}
+
+
+/*-cards-*/
+
+.cardhome {
+    margin-bottom: 20px;
+    box-shadow: 0 15px 30px 0 rgba(0, 0, 0, .11), 0 5px 15px 0 rgba(0, 0, 0, .08);
+    border: none;
+    height: calc(75vh);
+    width: 50%;
+    overflow: hidden;
+    overflow-y: scroll;
+    transition: all .3s ease-in;
+}
+
+.card-header {
+    background-color: #3636a8;
+    height: 50px;
+    border-radius: 30px 30px 0px 0px;
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    flex-direction: initial;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/* .card:hover {
+height: 250px;
+}*/
+
+.cardhome img {
+    display: block;
+    float: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.card-content h2 {
+    font-family: 'HelveticaNeueLTStd-Lt';
+    font-size: 18px;
+    color: #333;
+}
+
+.card p {
+    line-height: 18px;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 8px;
+    font-size: 14px;
+    color: #666;
+}
+
+
+/*---infografias---*/
+
+.infografia {
+    background-color: #fafafa;
+}
+
+.infografia p {
+    color: #333
+}
+
+.infografia h1 {
+    color: var(--azul);
+}
+
+.infografia i {
+    color: var(--azul);
+    font-size: 30px;
+}
+
+.infografia-titulo {
+    display: flex;
+}

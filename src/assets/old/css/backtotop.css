@@ -1,0 +1,8 @@
+@charset "UTF-8";#back-top{position:fixed;bottom:0px;float:right;right:-2%;z-index:9999999;}
+#back-top a{width:108px;display:block;text-align:center;font:11px/100% Arial, Helvetica, sans-serif;text-transform:uppercase;text-decoration:none;color:#bbb;-webkit-transition:0.5s;-moz-transition:0.5s;transition:0.5s;}
+#back-top a:hover{color:#000;}
+#back-top span{width:50px;height:50px;display:block;margin-bottom:7px;background:url(../img/lin1-01.svg) no-repeat center center;background-size:auto;-webkit-transition:0.1s;-moz-transition:0.1s;transition:0.1s;}
+#back-top a:hover span{background:url(../img/lin2-01.svg) no-repeat center center;-webkit-transition:0.1s;-moz-transition:0.1s;transition:0.1s;}
+#back-top span i{padding-top:5px;font-size:30px;text-align:center;color:#333;}
+@media only screen and (max-width:478px){#back-top{right:-20%;}
+}

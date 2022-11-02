@@ -1,0 +1,54 @@
+<app-header></app-header>
+<div class="blog-detail-01" id="page">
+
+    <section class="sub-header shop-layout-1">
+        <img class="rellax bg-overlay" [src]="pagina.img | imagenPipe: 'pages'" alt="{{pagina.titulo}}">
+        <!-- <img class="rellax bg-overlay" src="{{imagenSerUrl}}/blogs/{{blog.img}}" alt="{{blog.titulo}}"> -->
+        <div class="overlay-call-to-action"></div>
+        <h3 class="heading-style-3">{{pagina.titulo}}</h3>
+    </section>
+    <section class="boxed-sm">
+        <div class="container">
+            <div class="row main">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="sidebar">
+                            <!-- recientes -->
+                            <div class="widget widget-blog-post">
+                                <h4 class="title text-center">More About</h4>
+                                <ul class="list-blog">
+                                    <li *ngFor="let pager of paginarecientes ">
+                                        <a [routerLink]="['/about', pager._id]">
+                                            <div class="img-wrapper">
+                                                <img [src]="pager.img | imagenPipe: 'pages'" alt="{{pager.titulo}}">
+                                                <!-- <img src="{{imagenSerUrl}}/blogs/{{blog.img}}" alt="{{blog.titulo}}"> -->
+                                            </div>
+                                            <div class="desc">
+                                                <h5 class="title">{{pager.titulo }}...</h5>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- recientes -->
+                        </div>
+                    </div>
+                    <!-- detalle -->
+                    <div class="col-md-9">
+                        <article class="blog-detail">
+                            <h3 class="title-blog-detail">{{pagina.titulo}}</h3>
+                            <div class="content">
+                                <img class="feature-image" [src]="pagina.img | imagenPipe: 'pages'" alt="feature-image">
+                                <!-- <img class="feature-image" src="{{imagenSerUrl}}/blogs/{{blog.img}}" alt="feature-image"> -->
+                                <p class="sapo">{{pagina.descripcion}}</p>
+                            </div>
+                        </article>
+                    </div>
+                    <!-- detalle -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+<app-footer></app-footer>

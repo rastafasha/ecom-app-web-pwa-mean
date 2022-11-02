@@ -1,0 +1,260 @@
+<div *ngIf="identity">
+    <div class="home-3" id="page">
+        <nav class="sidemenu">
+            <ul>
+                <li>
+                    <a routerLink="/app/home" routerLinkActive="active">Home</a>
+                </li>
+
+                <li>
+                    <a routerLink="/app/about" routerLinkActive="active">About</a>
+                </li>
+
+                <li>
+                    <a routerLink="/app/gallery" routerLinkActive="active">Gallery</a>
+                </li>
+                <li>
+                    <a routerLink="/app/blogs" routerLinkActive="active">Blog</a>
+                </li>
+                <!-- <li *ngIf="identity && identity.role == 'USER' || 'ADMIN'">
+                    <a routerLink="/app/cart" routerLinkActive="active">Cart</a>
+                </li> -->
+                <li>
+                    <a routerLink="/app/contact" routerLinkActive="active">Contact</a>
+                </li>
+                <li>
+                    <a href="#">My Account</a>
+                    <ul>
+                        <li>
+                            <a [routerLink]="['/app/my-account']" routerLinkActive="active">My Profile</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                    <a (click)="logout()" class="cursor">Logout</a>
+                </li>
+            </ul>
+        </nav>
+        <header class="header-style-3">
+            <a class="brand-logo " routerLink="/home">
+                <img class="img-responsive" src="./assets/images/logo.png" alt="" />
+            </a>
+            <div class="header-3-inner">
+                <div class="widget widget-control-header widget-search-header">
+                    <a class="btn-open-search-form js-open-search-form-header" href="#">
+                        <span class="lnr lnr-magnifier"></span>
+                    </a>
+                    <div class="form-outer">
+                        <button class="btn-close-form-search-header js-close-search-form-header">
+                          <span class="lnr lnr-cross"></span>
+                        </button>
+
+                        <!-- buscador -->
+                        <form>
+                            <input placeholder="Search" />
+                            <button class="search">
+                            <span class="lnr lnr-magnifier"></span>
+                          </button>
+                        </form>
+                        <!-- buscador -->
+                    </div>
+                </div>
+                <!-- menu movil -->
+                <nav>
+                    <ul class="menu hidden-xs">
+                        <li>
+                            <a [routerLink]="['/app/home']" routerLinkActive="active">Home</a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/app/cursos']" routerLinkActive="active">Cursos</a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/app/productos']" routerLinkActive="active">Productos</a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/app/about']" routerLinkActive="active">About</a>
+                        </li>
+
+                        <li>
+                            <a [routerLink]="['/app/gallery']" routerLinkActive="active">Gallery</a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/app/blogs']" routerLinkActive="active">Blog</a>
+                        </li>
+                        <!-- <li *ngIf="identity && identity.role == 'USER' || 'ADMIN'">
+                            <a [routerLink]="['/app/cart']" routerLinkActive="active">Cart</a>
+                        </li> -->
+                        <li>
+                            <a [routerLink]="['/app/contact']" routerLinkActive="active">Contact</a>
+                        </li>
+                        <li>
+                            <a href="#">My Account</a>
+                            <ul>
+                                <li>
+                                    <a [routerLink]="['/app/my-account']" routerLinkActive="active">My Profile</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a (click)="logout()" class="cursor">Logout</a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- menu movil -->
+                <aside class="right">
+                    <div *ngIf="identity" class="navbar-tool dropdown ml-3">
+                        <button type="button" class="btn btn-outline-success btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="navbar-tool-label">{{carrito.length}}</span> &nbsp;<i class="navbar-tool-icon czi-cart"></i>&nbsp;<small>Mi carrito</small>&nbsp; ${{subtotal}}
+                      </button>
+
+
+                        <!-- Cart dropdown-->
+                        <div class="dropdown-menu dropdown-menu-right" style="width: 20rem;">
+                            <!-- <div class="dropdown-menu dropdown-menu-right" style="width: 20rem;" *ngIf="carrito.length != 0"> -->
+                            <div class="widget widget-cart px-3 pt-2 pb-3">
+                                <div style="height: 15rem;" data-simplebar data-simplebar-auto-hide="false">
+                                    <div class="widget-cart-item pb-2 border-bottom" *ngFor="let item of carrito">
+                                        <button class="close text-danger" type="button" aria-label="Remove" (click)="remove_producto(item._id)">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <div class="media align-items-center">
+                                            <a class="d-block mr-2" [routerLink]="['/producto/',item.producto.slug]"><img width="64" [src]="producto.img | imagenPipe: 'productos'" alt="Product" /></a>
+                                            <div class="media-body">
+                                                <h6 class="widget-product-title"><a [routerLink]="['/producto/',item.producto.slug]">{{item.producto.titulo.substr(0,25)}}</a></h6>
+                                                <div class="widget-product-meta"><span class="text-accent mr-2">${{item.precio}}</span><span class="text-muted">x {{item.cantidad}}</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="d-flex flex-wrap justify-content-between align-items-center py-3">
+                                    <div class="font-size-sm mr-2 py-2">
+                                        <span class="text-muted">Subtotal:</span>
+                                        <span class="text-accent font-size-base ml-1">${{subtotal}}</span>
+                                    </div>
+
+                                </div>
+                                <a class="btn btn-primary btn-sm btn-block" [routerLink]="['/app/cart']">
+                                    <i class="czi-card mr-2 font-size-base align-middle"></i>Carrito completo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="widget widget-control-header hidden-lg hidden-md hidden-sm">
+                        <a class="navbar-toggle js-offcanvas-has-events" type="button" (click)="openMenu()">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                    </div>
+                </aside>
+            </div>
+        </header>
+
+    </div>
+</div>
+<div *ngIf="!identity">
+    <div class="home-3" id="page">
+        <nav class="sidemenu">
+            <ul>
+                <li>
+                    <a routerLink="/home" routerLinkActive="active">Home</a>
+                </li>
+
+                <li>
+                    <a routerLink="/about" routerLinkActive="active">About</a>
+                </li>
+
+                <li>
+                    <a routerLink="/gallery" routerLinkActive="active">Gallery</a>
+                </li>
+                <li>
+                    <a routerLink="/blogs" routerLinkActive="active">Blog</a>
+                </li>
+                <li>
+                    <a routerLink="/contact" routerLinkActive="active">Contact</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/login']" routerLinkActive="active">Login</a>
+                </li>
+            </ul>
+        </nav>
+        <header class="header-style-3">
+            <a class="brand-logo " routerLink="/home">
+                <img class="img-responsive" src="./assets/images/logo.png" alt="" />
+            </a>
+            <div class="header-3-inner">
+                <div class="widget widget-control-header widget-search-header">
+                    <a class="btn-open-search-form js-open-search-form-header" href="#">
+                        <span class="lnr lnr-magnifier"></span>
+                    </a>
+                    <div class="form-outer">
+                        <button class="btn-close-form-search-header js-close-search-form-header">
+          <span class="lnr lnr-cross"></span>
+        </button>
+                        <form>
+                            <input placeholder="Search" />
+                            <button class="search">
+            <span class="lnr lnr-magnifier"></span>
+          </button>
+                        </form>
+                    </div>
+                </div>
+                <nav>
+                    <ul class="menu hidden-xs">
+                        <li>
+                            <a [routerLink]="['/home']" routerLinkActive="active">Home</a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/cursos']" routerLinkActive="active">Cursos</a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/productos']" routerLinkActive="active">Productos</a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/about']" routerLinkActive="active">About</a>
+                        </li>
+
+                        <li>
+                            <a [routerLink]="['/gallery']" routerLinkActive="active">Gallery</a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/blogs']" routerLinkActive="active">Blog</a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/contact']" routerLinkActive="active">Contact</a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/login']" routerLinkActive="active">Login</a>
+                        </li>
+
+                    </ul>
+                </nav>
+                <aside class="right">
+
+
+                    <div *ngIf="!identity" class="navbar-tool dropdown ml-3">
+
+                        <!-- Cart dropdown-->
+                        <div class="dropdown-menu dropdown-menu-right text-center py-4 px-3" style="width: 16rem;">
+                            <img class="d-inline-block mb-2" src="assets/images/cart.png" width="40" alt="Empty cart">
+                            <p class="font-size-sm text-muted mb-0">Debes iniciar sesión</p>
+                        </div>
+                    </div>
+                    <div class="widget widget-control-header hidden-lg hidden-md hidden-sm">
+                        <a class="navbar-toggle js-offcanvas-has-events" type="button" (click)="openMenu()">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                    </div>
+                </aside>
+            </div>
+        </header>
+
+    </div>
+</div>

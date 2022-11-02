@@ -1,0 +1,67 @@
+@charset "UTF-8";
+@import url("main-template.css");
+@import url("ursiStyle.css");
+:root {
+    --dark-brown: #2c180e;
+    --star-color: #fea569;
+    /* var(--dark-brown); */
+}
+
+*,
+*:after,
+*:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.clear {
+    clear: both;
+    visibility: hidden;
+    margin: 0px;
+    padding: 0px;
+    height: 0;
+}
+
+.precioviejo {
+    text-decoration: line-through;
+}
+
+a {
+    cursor: pointer;
+}
+
+.blog-v .post .img-wrapper img {
+    opacity: 1 !important;
+}
+
+iframe .mapa {
+    width: 100%;
+    height: 50vh;
+}
+
+iframe .videom {
+    width: 100%;
+    height: 320px;
+}
+
+.star-rating {
+    display: inline-block;
+    white-space: nowrap;
+    line-height: 1;
+    vertical-align: middle
+}
+
+.star-rating .fa-star {
+    display: inline-block;
+    margin-right: .1875rem;
+    color: var(--dark-brown);
+    font-size: 12px;
+    vertical-align: middle
+}
+
+.star-rating .fa-star.active {
+    color: var(--star-color);
+}

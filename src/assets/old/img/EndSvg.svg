@@ -1,0 +1,11 @@
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 50 50">
+    <path
+        id="path"
+        d="M 12.236 24.218 L 25 1.401 L 37.202 24.218"
+        fill="none"
+        stroke="rgba(0,0,0,1.00)"
+        stroke-width="0.9562"
+        stroke-miterlimit="10"/>
+</svg>

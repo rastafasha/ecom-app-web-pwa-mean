@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+/* CSS Document */
+
+
+/*Author: Malcolm cordova @malcolmcordova mercadocreativo@gmail.com www.malcolmcordova.com*/
+
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700");
+@import url("reset.css");
+@import url("bootstrap.css");
+@import url("bootstrap.min.css");
+@import url("normalize.css");
+@import url("font-awesome.css");
+@import url("font-awesome.min.css");
+@import url("fonts.css");
+@import url("anim.css");
+@import url("animate.css");
+@import url("botones.css");
+@import url("footer.css");
+@import url("headerdinamico.css");
+@import url("parallax.css");
+@import url("banner.css");
+@import url("backtotop.css");
+
+/*@import url("menulateral.css");*/
+
+@import url("hovereffects.css");
+@import url("formularios.css");
+@import url("botones.css");
+
+/* menu lateral */
+
+@import url("component.css");
+
+/* menu lateral */
+
+@import url("topeSocial.css");
+@import url("mapa.css");
+@import url("datos-victimas.css");
+@import url("modales-info.css");
+@import url("mouseicon.css");
+@import url("menusegundario.css");
+@import url("grids.css");
+@import url("redcdlhStyle.css");
+:root {
+    --fondo: #e9ebf0;
+    --naranja: #e9ebf0;
+    --azul: #3636a8;
+    --azullogo: #72c0ff;
+    --grislogo: #d5d5ed;
+    --rojosm: #ee114e;
+    --header: #3636a8;
+}
+
+.shadow {
+    box-shadow: 0 15px 30px 0 rgba(0, 0, 0, .11), 0 5px 15px 0 rgba(0, 0, 0, .08);
+}
+
+.shadowHover:hover {
+    box-shadow: 0 15px 30px 0 rgba(0, 0, 0, .11), 0 5px 15px 0 rgba(0, 0, 0, .08);
+}
+
+.clear {
+    clear: both;
+    visibility: hidden;
+    margin: 0px;
+    padding: 0px;
+    height: 0;
+}
+
+.nav-tabs {
+    border-bottom: 1px solid #ddd;
+    display: flex !important;
+    justify-content: space-between !important;
+    padding: 5px;
+}
+
+.nav-tabs li .active {
+    color: var(--azul);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    color: #ccc;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    text-shadow: none;
+}

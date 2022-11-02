@@ -1,0 +1,84 @@
+@charset "UTF-8";
+body {
+    -webkit-animation: body-animacion 1s 1 ease;
+    -moz-animation: body-animacion 1s 1 ease;
+    -o-animation: body-animacion 1s 1 ease;
+    -ms-animation: body-animacion 1s 1 ease;
+    animation: body-animacion 1s 1 ease;
+}
+
+@-ms-keyframes body-animacion {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes body-animacion {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes body-animacion {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes body-animacion {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.Up {
+    -webkit-animation: Up-animacion 1s 1 ease;
+    -moz-animation: Up-animacion 1s 1 ease;
+    -o-animation: Up-animacion 1s 1 ease;
+    -ms-animation: Up-animacion 1s 1 ease;
+    animation: Up-animacion 1s 1 ease;
+    -webkit-animation-name: fadeInUp;
+    animation-name: fadeInUp;
+}
+
+.doun {
+    -webkit-animation: doun-animacion 1s 1 ease;
+    -moz-animation: doun-animacion 1s 1 ease;
+    -o-animation: doun-animacion 1s 1 ease;
+    -ms-animation: doun-animacion 1s 1 ease;
+    animation: doun-animacion 1s 1 ease;
+    -webkit-animation-name: fadeInDown;
+    animation-name: fadeInDown;
+}
+
+.left {
+    -webkit-animation: left-animacion 1s 1 ease;
+    -moz-animation: left-animacion 1s 1 ease;
+    -o-animation: left-animacion 1s 1 ease;
+    -ms-animation: left-animacion 1s 1 ease;
+    animation: left-animacion 1s 1 ease;
+    -webkit-animation-name: fadeInLeft;
+    animation-name: fadeInLeft;
+}
+
+.social {
+    -webkit-animation: social-animacion 1s 1 ease;
+    -moz-animation: social-animacion 1s 1 ease;
+    -o-animation: social-animacion 1s 1 ease;
+    -ms-animation: social-animacion 1s 1 ease;
+    animation: social-animacion 1s 1 ease;
+    -webkit-animation-name: fadeInUp;
+    animation-name: fadeInUp;
+}

@@ -1,0 +1,214 @@
+@charset "UTF-8";
+
+/* CSS Document */
+
+@charset "UTF-8";
+
+/* CSS Document */
+
+
+/*Author: Malcolm cordova @malcolmcordova mercadocreativo@gmail.com www.malcolmcordova.com*/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+/*header{
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 20px;
+    transition: all 300ms ease;
+     -webkit-transition: all 300ms ease;
+    -o-transition: all 300ms ease;
+    -moz-transition: all 300ms ease;
+    height:calc( 100%);
+    z-index: 2000;
+    position: fixed;
+    
+   
+
+    
+}*/
+
+.header2 {
+    min-height: 60px;
+    background-color: var(--header);
+    transition: all 300ms ease;
+    -webkit-transition: all 300ms ease;
+    -o-transition: all 300ms ease;
+    -moz-transition: all 300ms ease;
+}
+
+.header2 .texto {
+    position: relative;
+    z-index: 99999;
+    top: 0px;
+    left: 0%;
+    width: 100%;
+    height: 20px;
+    text-shadow: 1px 1px 1px #fff;
+    transition: all 300ms ease;
+    -webkit-transition: all 300ms ease;
+    -o-transition: all 300ms ease;
+    -moz-transition: all 300ms ease;
+}
+
+.header2 .logoo {
+    opacity: 1;
+}
+
+.header2 .menn {
+    color: #1c223e;
+}
+
+.header2 .t2 {
+    display: none;
+}
+
+.header3 {
+    position: fixed;
+    min-height: 100px;
+    height: auto;
+    background-color: var(--header);
+    transition: all 300ms ease;
+    -webkit-transition: all 300ms ease;
+    -o-transition: all 300ms ease;
+    -moz-transition: all 300ms ease;
+}
+
+.header3 .texto {
+    position: absolute;
+    z-index: 99999;
+    top: 50px;
+    left: 50%;
+    width: auto;
+    height: 20px;
+    transition: all 300ms ease;
+    -webkit-transition: all 300ms ease;
+    -o-transition: all 300ms ease;
+    -moz-transition: all 300ms ease;
+}
+
+.header3 .logocompleto {
+    opacity: 1;
+    width: 200px;
+    height: 19px;
+    margin-top: -13px;
+    transition: all 300ms ease;
+    -webkit-transition: all 300ms ease;
+    -o-transition: all 300ms ease;
+    -moz-transition: all 300ms ease;
+}
+
+.header3 .logocompleto1 {
+    opacity: 1;
+    width: 200px;
+    height: 19px;
+    transition: all 300ms ease;
+    -webkit-transition: all 300ms ease;
+    -o-transition: all 300ms ease;
+    -moz-transition: all 300ms ease;
+}
+
+.header3 .social {
+    margin-top: 25px;
+}
+
+.header3 .menu {
+    margin-top: -5px;
+}
+
+.header3 .menn {
+    color: #1c223e;
+}
+
+.header4 {
+    position: relative;
+    height: auto;
+}
+
+@media only screen and (max-width:600px) {
+    .logoo {
+        display: none;
+    }
+    header {
+        width: 100%;
+        overflow: visible;
+        height: 0px;
+    }
+    .header4 {
+        position: relative;
+        height: 30px;
+    }
+    .header2 {
+        min-height: 150px;
+    }
+    .header2 .texto {
+        top: 30px;
+    }
+    header .logo {
+        width: 100%;
+        text-align: center;
+        line-height: 100px;
+        -webkit-transition: all 500ms ease;
+        -o-transition: all 500ms ease;
+        -moz-transition: all 500ms ease;
+    }
+    .headerfull {
+        position: fixed;
+        height: 100%;
+    }
+    .header3 {
+        position: fixed;
+        min-height: 67px;
+    }
+    .header3 .texto {
+        height: 80px;
+    }
+    .header3 .texto {
+        left: 45%;
+    }
+    .header4 {
+        position: fixed;
+        background-color: var(--header);
+        min-height: 50px;
+    }
+    .header4 .logocompleto {
+        opacity: 1;
+        width: 200px;
+        height: 19px;
+        transition: all 300ms ease;
+        -webkit-transition: all 300ms ease;
+        -o-transition: all 300ms ease;
+        -moz-transition: all 300ms ease;
+    }
+}
+
+@media only screen and (min-device-width: 650px) and (max-device-width: 700px) and (orientation: landscape) {
+    .header4 {
+        position: absolute;
+        height: 30px;
+        background-color: rgba(59, 103, 143, 0);
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 990px) {
+    .header3 {
+        position: fixed;
+        height: auto;
+        background-color: var(--header);
+    }
+    header {
+        width: 100%;
+        overflow: visible;
+        height: auto;
+    }
+}
+
+@media only screen and (min-width: 800px) and (max-width: 990px) {
+    .header3 nav li a {
+        color: #666;
+    }
+}

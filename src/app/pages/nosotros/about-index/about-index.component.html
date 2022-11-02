@@ -1,0 +1,43 @@
+<app-header></app-header>
+<section class="sub-header shop-layout-1">
+    <img class="rellax bg-overlay" src="images/sub-header/05.jpg" alt="">
+    <div class="overlay-call-to-action"></div>
+    <h3 class="heading-style-3">About</h3>
+</section>
+<section class="boxed-sm mt-5">
+    <div class="container">
+
+        <div class="row blog-v reverse">
+            <div class="col-md-12" *ngFor="let item of pages |  paginate: { itemsPerPage: count, currentPage: p }">
+                <div class="post">
+                    <div class="img-wrapper js-set-bg-blog-thumb imagenmarco">
+                        <a [routerLink]="['../about', item._id]">
+                            <img class="img-responsive" [src]="item.img | imagenPipe: 'pages'" alt="{{item.titulo}}" />
+                        </a>
+                    </div>
+                    <div class="desc">
+                        <h3>
+                            <a [routerLink]="['../about', item._id]">{{item.titulo}}</a>
+                        </h3>
+                        <p class="meta">
+                            <span class="time">{{item.createdAt | date:'mediumDate'}}</span>
+                        </p>
+                        <p class="sapo">{{item.descripcion | slice:0:120}}...</p>
+                        <a class="read-more" [routerLink]="['../about', item._id]">READ MORE
+                      <i class="fa fa-long-arrow-right"></i>
+                    </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <!-- paginador -->
+        <div class="row" *ngIf="pages.length > 8">
+            <div class="col-md-12 text-right">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+            </div>
+        </div>
+    </div>
+</section>
+<app-footer></app-footer>

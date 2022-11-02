@@ -1,0 +1,194 @@
+.datos-victimas {}
+
+.datos-victimas h1,
+.datos-victimas h2,
+.datos-victimas h3,
+.datos-victimas h4 {
+    margin: 0px;
+    padding: 0;
+    margin-bottom: 5px;
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    align-self: flex-end;
+}
+
+.datos-victimas h1 {
+    font-size: 22px;
+}
+
+.datos-victimas h2 {
+    font-size: 20px;
+    align-self: flex-start;
+    border-bottom: 1px solid var(--azul);
+    padding-bottom: 3px;
+    margin-bottom: 3px;
+    width: 100%;
+    clear: both;
+}
+
+.datos-victimas h3 {
+    font-size: 18px;
+    align-self: flex-end;
+    color: var(--azullogo);
+}
+
+.datos-victimas h4 {
+    font-size: 22px;
+    align-self: flex-end;
+}
+
+.datos-victimas i {
+    margin-bottom: 5px;
+    border: 2px solid;
+    border-radius: 120px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    justify-content: space-around;
+    display: flex;
+    align-items: center;
+    align-self: flex-start;
+}
+
+.flex-container {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.datos-victimas .item {
+    background: #fff;
+    width: calc((100% - 30px) / 3);
+    flex: none;
+    margin-bottom: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    flex-direction: column;
+    border-radius: 4px;
+    transition: all .5s ease;
+}
+
+.datos-victimas .item:nth-child(3) {
+    align-items: end;
+    flex-flow: wrap;
+    justify-content: flex-start;
+}
+
+.datos-victimas .item:nth-child(3) h1 {
+    place-self: flex-start;
+}
+
+.datos-victimas .datos-victimas.item:hover {
+    background: transparent;
+    transition: all .5s ease;
+    box-shadow: 0 15px 30px 0 rgba(0, 0, 0, .11), 0 5px 15px 0 rgba(0, 0, 0, .08);
+}
+
+.cuadroinfo {
+    display: block;
+    width: calc((100% - 10px) / 2);
+}
+
+@media(max-width:668px) {
+    .datos-victimas .item {
+        width: calc((100% - 10px) / 1);
+    }
+}
+
+@media(min-width:669px) {
+    .datos-victimas .item {
+        width: calc((100% - 20px) / 2);
+    }
+}
+
+@media(min-width:900px) {
+    .datos-victimas .item {
+        width: calc((100% - 30px) / 3);
+    }
+}
+
+
+/*-cards-*/
+
+.cardhome {
+    margin-bottom: 20px;
+    box-shadow: 0 15px 30px 0 rgba(0, 0, 0, .11), 0 5px 15px 0 rgba(0, 0, 0, .08);
+    border: none;
+    height: 360px;
+    overflow: hidden;
+    overflow-y: scroll;
+    transition: all .3s ease-in;
+}
+
+.cardhome .card-body {
+    background-image: url(../img/disruptive-tech-1600x600-c-default.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 0% -24%;
+}
+
+.cardhome img {
+    display: block;
+    float: left;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border: 1px solid;
+}
+
+.card p i,
+.card h5 i {
+    font-size: 14px;
+    color: var(--morado);
+    margin-right: 5px;
+    height: 18px;
+    width: 12px;
+    text-align: center;
+}
+
+.card p {
+    line-height: 18px;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 8px;
+    font-size: 14px;
+}
+
+.cardhome .social {
+    display: block;
+    height: 30px;
+    margin: auto;
+    width: 60%;
+    text-align: center;
+}
+
+.cardhome .social i {
+    font-size: 16px;
+    color: var(--morado);
+    text-align: center;
+}
+
+.cardblog .card-body,
+.cardtop .card-body {
+    box-shadow: 0 15px 30px 0 rgba(0, 0, 0, .11), 0 5px 15px 0 rgba(0, 0, 0, .08);
+}
+
+.cardblog .imgnott {
+    background-image: url(../img/topes/disruptive-tech-1600x600-c-default.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 200px;
+}
+
+.cardblog img {
+    width: 100%;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
