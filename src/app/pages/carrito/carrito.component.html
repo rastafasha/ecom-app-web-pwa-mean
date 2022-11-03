@@ -12,7 +12,7 @@
             <!-- List of items-->
             <section class="col-lg-8">
                 <div class="d-flex justify-content-between align-items-center pt-3 pb-2 pb-sm-5 mt-1">
-                    <h2 class="h6 text-light mb-0">Productos</h2><a class="btn btn-outline-primary btn-sm pl-2" [routerLink]="['/productos']" routerLinkActive="router-link-active"><i class="czi-arrow-left mr-2"></i>Continuar comprando</a>
+                    <h2 class="h6 text-light mb-0">Productos</h2><a class="btn btn-outline-primary btn-sm pl-2" [routerLink]="['../productos']" routerLinkActive="router-link-active"><i class="czi-arrow-left mr-2"></i>Continuar comprando</a>
                 </div>
                 <!-- Item-->
                 <div class="alert alert-danger alert-with-icon" role="alert" *ngIf="error_stock">
@@ -22,13 +22,13 @@
                     Algun producto de su carrito de compras no tiene stock.
                 </div>
 
-                <ng-container *ngIf="carrito.length != 0">
+                <ng-container *ngIf="carrito">
                     <div *ngFor="let item of carrito" class="d-sm-flex justify-content-between align-items-center my-4 pb-3 border-bottom">
 
                         <div class="media media-ie-fix d-block d-sm-flex align-items-center text-center text-sm-left">
-                            <a class="d-inline-block mx-auto mr-sm-4" [routerLink]="['/producto/',item.producto.slug]" style="width: 10rem;"><img [src]="url+'productos_img_data/resources/thumbnails/'+item.producto.poster" alt="Product"></a>
+                            <a class="d-inline-block mx-auto mr-sm-4" [routerLink]="['../producto/',item.producto._id]" style="width: 10rem;"><img [src]="item.producto.img | imagenPipe: 'productos'" style="width: 100%;" alt="Product"></a>
                             <div class="media-body pt-2">
-                                <h3 class="product-title font-size-base mb-2"><a [routerLink]="['/producto/',item.producto.slug]">{{item.producto.titulo}}</a></h3>
+                                <h3 class="product-title font-size-base mb-2"><a [routerLink]="['../producto/',item.producto._id]">{{item.producto.titulo}}</a></h3>
 
                                 <ng-container *ngIf="item.producto.stock > 0">
                                     <div class="font-size-sm"><span class="text-muted mr-2">{{item.producto.nombre_selector}}:</span>{{item.selector}}</div>
@@ -54,7 +54,7 @@
 
                     </div>
                 </ng-container>
-                <div *ngIf="carrito.length == 0" class="my-4 pb-3 border-bottom">
+                <div *ngIf="!carrito" class="my-4 pb-3 border-bottom">
                     <!-- Alert with bakground image -->
                     <div class="row">
                         <div class="col-lg-12">
@@ -117,7 +117,7 @@
                         </table>
 
                     </div>
-                    <div class="accordion mb-4 cart-data-venta" id="order-options" *ngIf="carrito.length != 0">
+                    <div class="accordion mb-4 cart-data-venta" id="order-options" *ngIf="carrito">
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="accordion-heading"><a href="#promo-code" role="button" data-toggle="collapse" aria-expanded="true" aria-controls="promo-code">Aplicar promoción<span class="accordion-indicator"></span></a></h3>
@@ -142,7 +142,7 @@
 
                                     <div class="form-group">
                                         <select class="form-control custom-select" required (change)="get_direccion()" [(ngModel)]="id_direccion">
-                          <option value="" selected disabled>Selecciona</option>
+                          <option value="" selected disabled >Selecciona</option>
                           <ng-container *ngFor="let item of direcciones">
                             <option value="{{item._id}}">{{item.direccion}}</option>
                           </ng-container>
@@ -159,11 +159,11 @@
                     </div>
                     <div class="invalid-feedback" style="display: block;" *ngIf="msm_error">{{msm_error}}</div>
 
-                    <button class="btn btn-primary btn-shadow btn-block mt-4 mb-4" *ngIf="carrito.length != 0" id="btn-verify-data" (click)="verify_data()"><i class="czi-card font-size-lg mr-2"></i>Proceder a pagar</button>
+                    <button class="btn btn-primary btn-shadow btn-block mt-4 mb-4" *ngIf="carrito" id="btn-verify-data" (click)="verify_data()"><i class="czi-card font-size-lg mr-2"></i>Proceder a pagar</button>
 
                     <button class="btn btn-primary btn-shadow btn-block mt-4 mb-4" id="btn-back-data" (click)="back_data()"><i class="czi-reply font-size-lg mr-2"></i>Regresar</button>
 
-                    <div class="bg-secondary rounded-lg px-4 pt-4 pb-2 mb-4" id="card-data-envio">
+                    <div class="rounded-lg px-4 pt-4 pb-2 mb-4" id="card-data-envio">
                         <div class="row">
                             <div class="col-sm-12">
                                 <h4 class="h6">Detalles de envío:</h4>

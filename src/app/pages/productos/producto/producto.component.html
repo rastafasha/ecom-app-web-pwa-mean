@@ -7,7 +7,6 @@
 
         <section class="sub-header shop-detail-1">
             <img class="rellax bg-overlay" [src]="producto.img | imagenPipe: 'productos'" alt="{{producto.titulo}}">
-            <!-- <img class="rellax bg-overlay" src="{{imagenSerUrl}}/productos/{{producto.img}}" alt="{{producto.titulo}}"> -->
             <div class="overlay-call-to-action"></div>
             <h3 class="heading-style-3" style="color:#ccc">{{producto.titulo}}</h3>
         </section>
@@ -16,13 +15,12 @@
                 <div class="row product-detail">
                     <div class="row product-detail-wrapper">
 
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <div class="col-md-6">
                                 <div class="woocommerce-product-gallery vertical">
                                     <div class="main-carousel">
                                         <div class="item">
                                             <img class="img-responsive" [src]="producto.img | imagenPipe: 'productos'" alt="{{producto.titulo}} thumbnail">
-                                            <!-- <img class="img-responsive" src="{{imagenSerUrl}}/productos/{{producto.img}}" alt="{{producto.titulo}} thumbnail"> -->
                                         </div>
 
                                     </div>
@@ -31,49 +29,23 @@
                                 <!-- gallery -->
                                 <div class="col-lg-7 pr-lg-0 pt-lg-4">
                                     <div class="cz-product-gallery">
-                                        <div class="cz-preview order-sm-2">
 
-                                            <div class="cz-preview-item active">
-
-                                                <img class="cz-image-zoom" id="active_img_thumb" [src]="producto.img | imagenPipe: 'galerias'" [attr.data-zoom]="url+'/galeria/resources/thumbnails/'+first_img" alt="Product image">
-                                                <div class="cz-image-zoom-pane"></div>
-                                            </div>
-
-
-                                        </div>
-                                        <div class="cz-thumblist order-sm-1">
+                                        <div class="galeria-prod">
                                             <ng-container *ngFor="let imagen of galeria;let primero = first;let indice=index">
                                                 <a class="cz-thumblist-item active" [attr.id]="'img_'+indice" (click)="click_img(imagen.imagen,'img_'+indice)" *ngIf="primero">
-                                                    <img class="thumb-show" [src]="url+'/galeria/resources/thumbnails/'+imagen.imagen" alt="Product thumb">
+                                                    <img class="gallery__img" [src]="imagen.img | imagenPipe: 'galerias'" alt="Product thumb">
                                                 </a>
                                                 <a class="cz-thumblist-item" [attr.id]="'img_'+indice" (click)="click_img(imagen.imagen,'img_'+indice)" *ngIf="!primero">
-                                                    <img class="thumb-show" [src]="url+'/galeria/resources/thumbnails/'+imagen.imagen" alt="Product thumb">
+                                                    <img class="gallery__img" [src]="imagen.img | imagenPipe: 'galerias'" alt="Product thumb">
                                                 </a>
                                             </ng-container>
 
-                                            <!-- <a class="cz-thumblist-item video-item" data-toggle="modal" data-target="#video_modal">
-                                                <div class="cz-thumblist-item-text">
-                                                    <i class="czi-video"></i> Video
-                                                </div>
-                                            </a>
-
-                                            <div class="modal fade" id="video_modal" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 750px;">
-                                                    <div class="modal-content" id="video_iframe">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title"></h4>
-                                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
                                 <!-- gallery -->
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <!-- toast -->
                                 <div class="toast-container toast-top-right">
                                     <div class="toast mb-3 fade hide" id="dark-toast" data-delay="5000" role="alert" aria-live="assertive" aria-atomic="true">
@@ -89,23 +61,7 @@
                                     <div class="desc">
                                         <div class="header-desc">
                                             <h2 class="product-title">{{producto.titulo}} </h2>
-                                            <!-- <p class="price">${{producto.precio_ahora}}</p>
-                                            <p class="price">${{producto.precio_antes}} </p> -->
                                         </div>
-                                        <!-- <div class="body-desc">
-                                            <div class="woocommerce-product-details-short-description">
-                                                <p>{{producto.info_short}} </p>
-                                            </div>
-                                        </div>
-                                        <div class="footer-desc">
-                                            <div class="group-btn-control-wrapper">
-                                                <button href="#" class="btn btn-outline-success" (click)="addToCart()"> <i class="fa fa-cart"></i> add to cart</button>
-                                                <button class="btn btn-wishlist btn-brand-ghost no-radius">
-                                                <i class="fa fa-heart"></i>
-                                              </button>
-                                            </div>
-
-                                        </div> -->
                                     </div>
                                     <!-- detalle -->
                                     <div class="" id="preview-img">
@@ -239,29 +195,36 @@
                                                     <div class="collapse" id="shippingOptions" data-parent="#productPanels">
                                                         <div class="card-body font-size-sm">
 
-                                                            <ng-container *ngFor="let item of postales;let primero = first; let ultimo = last">
-                                                                <div class="d-flex justify-content-between border-bottom pb-2" *ngIf="primero">
-                                                                    <div>
-                                                                        <div class="font-weight-semibold text-dark">{{item.titulo}}</div>
-                                                                        <div class="font-size-sm text-muted">{{item.tiempo}}</div>
-                                                                    </div>
-                                                                    <div>${{item.precio}}</div>
-                                                                </div>
-                                                                <div class="d-flex justify-content-between border-bottom py-2" *ngIf="!primero && !ultimo ">
-                                                                    <div>
-                                                                        <div class="font-weight-semibold text-dark">{{item.titulo}}</div>
-                                                                        <div class="font-size-sm text-muted">{{item.tiempo}}</div>
-                                                                    </div>
-                                                                    <div>${{item.precio}}</div>
-                                                                </div>
-                                                                <div class="d-flex justify-content-between py-2" *ngIf="ultimo ">
-                                                                    <div>
-                                                                        <div class="font-weight-semibold text-dark">{{item.titulo}}</div>
-                                                                        <div class="font-size-sm text-muted">{{item.tiempo}}</div>
-                                                                    </div>
-                                                                    <div>${{item.precio}}</div>
-                                                                </div>
-                                                            </ng-container>
+                                                            <table class="postal">
+                                                                <thead>
+                                                                    <th>OP</th>
+                                                                    <th>Medio postal</th>
+                                                                    <th>Precio</th>
+                                                                </thead>
+                                                                <tbody *ngFor="let item of postales">
+                                                                    <tr>
+                                                                        <td *ngIf="item._id == radio_postal">
+                                                                            <input type="radio" class="form-control" style="height: 25px;width: 15px;" [attr.id]="'postal-'+item._id" name="radio" (change)="select_postal($event,item)" value="{{item._id}}" checked>
+                                                                        </td>
+                                                                        <td *ngIf="item._id != radio_postal">
+                                                                            <input type="radio" class="form-control" style="height: 25px;width: 15px;" [attr.id]="'postal-'+item._id" name="radio" (change)="select_postal($event,item)" value="{{item._id}}">
+                                                                        </td>
+                                                                        <td>
+                                                                            <!-- Blockquote -->
+                                                                            <blockquote class="blockquote" style="margin-bottom: 0.4rem;">
+                                                                                <p style="font-size: 13px;margin-bottom: 0px !important;">{{item.titulo}}</p>
+                                                                                <footer class="blockquote-footer">
+                                                                                    {{item.tiempo}}
+                                                                                </footer>
+                                                                            </blockquote>
+
+                                                                        </td>
+                                                                        <td>${{item.precio}}</td>
+
+                                                                    </tr>
+                                                                </tbody>
+
+                                                            </table>
 
 
                                                         </div>
@@ -602,7 +565,7 @@
                                 <figure class="item col-xs-12 col-sm-3" *ngFor="let slide of news_productos; let indice = index">
                                     <div class="product product-style-1">
                                         <div class="img-wrapper">
-                                            <a [routerLink]="['/producto/', producto._id]">
+                                            <a [routerLink]="['../producto/', producto.slug]">
                                                 <img class="img-responsive" [src]="slide.img | imagenPipe: 'productos'" [title]="slide.title" alt="{{producto.titulo}} thumbnail" />
                                             </a>
                                             <div class="product-control-wrapper bottom-right">
@@ -620,9 +583,11 @@
                                         </div>
                                         <figcaption class="desc text-center">
                                             <h3>
-                                                <a class="product-name" [routerLink]="['/producto/', producto._id]">{{slide.titulo.substr(0,60)}}...</a>
+                                                <a class="product-name" [routerLink]="['../producto/', producto.slug]">{{slide.titulo.substr(0,60)}}...</a>
                                             </h3>
-                                            <!-- <a class="product-meta d-block font-size-xs pb-1" [routerLink]="['/producto/',slide.slug]">{{slide.categoria.nombre}} - {{slide.subcategoria}}s</a> -->
+                                            <p>
+                                                <a class="product-meta d-block font-size-xs pb-1" [routerLink]="['../category/',slide.categoria.nombre]">{{slide.categoria.nombre}} - {{slide.subcategoria}}s</a>
+                                            </p>
                                             <span class="price">${{producto.precio_ahora}}</span><br>
                                             <span class="price">${{producto.precio_antes}}</span>
 

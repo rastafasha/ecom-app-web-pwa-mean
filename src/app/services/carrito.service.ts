@@ -3,6 +3,9 @@ import { Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import {environment} from 'src/environments/environment';
 import { Carrito } from "../models/carrito.model";
+import { map } from 'rxjs/operators';
+
+const base_url = environment.baseUrl;
 
 @Injectable({
   providedIn: 'root'
@@ -11,24 +14,47 @@ export class CarritoService {
 
   public url;
 
+  public carrito: Carrito;
+
   constructor(
     private _http : HttpClient,
   ) {
     this.url = environment.baseUrl;
    }
 
+   get token():string{
+    return localStorage.getItem('token') || '';
+  }
+
+
+  get headers(){
+    return{
+      headers: {
+        'x-token': this.token
+      }
+    }
+  }
+
   registro(data:any):Observable<any>{
-    let headers = new HttpHeaders().set('Content-Type','application/json');
-    return this._http.post(this.url + '/carrito/registro',data,{headers:headers})
+
+    const url = `${base_url}/carritos`;
+    return this._http.post(url, data, this.headers);
   }
 
-  preview_carrito(id:string):Observable<any>{
-    let headers = new HttpHeaders().set('Content-Type','application/json');
-    return this._http.get(this.url + '/carrito/limit/data/'+id,{headers:headers})
+  preview_carrito(_id:string):Observable<any>{
+
+
+    const url = `${base_url}/carritos/limit/data/${_id}`;
+    return this._http.get<any>(url, this.headers)
+      .pipe(
+        map((resp:{ok: boolean, carrito: Carrito}) => resp.carrito)
+        );
   }
 
-  remove_carrito(id:string):Observable<any>{
-    let headers = new HttpHeaders().set('Content-Type','application/json');
-    return this._http.delete(this.url + '/carrito/delete/'+id,{headers:headers})
+  remove_carrito(_id:string):Observable<any>{
+
+    const url = `${base_url}/carritos/delete/${_id}`;
+    return this._http.delete(url, this.headers);
   }
+
 }

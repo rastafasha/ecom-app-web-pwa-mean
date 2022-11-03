@@ -17,7 +17,7 @@ declare var $:any;
 export class ChatTicketComponent implements OnInit, DoCheck {
 
   @ViewChild('scrollMe', {static: false}) private myScrollContainer: ElementRef;
-  urlSocket = environment.soketServer;
+
 
   public identity: any = {};
   public url;
@@ -27,7 +27,7 @@ export class ChatTicketComponent implements OnInit, DoCheck {
   public mensajes : Array<any> = [];
   public poster_admin;
   public ticket : any = {};
-  public socket = io(this.urlSocket);
+  public socket = io(environment.soketServer);
   public close_ticket = false;
   public estado_ticket;
 
@@ -57,7 +57,7 @@ export class ChatTicketComponent implements OnInit, DoCheck {
         if(data.data){
           this._ticketService.get_ticket(this.id).subscribe(
             response =>{
-              this.ticket = response.ticket;
+              this.ticket = response;
               this.estado_ticket = this.ticket.estado;
 
 
@@ -117,10 +117,12 @@ export class ChatTicketComponent implements OnInit, DoCheck {
   }
 
   listar_msms(){
-    this._ticketService.data(this.identity._id,'5ef640b75ee066601c6ed1c0').subscribe(
+    this._ticketService.data(this.identity.uid,'5ef640b75ee066601c6ed1c0').subscribe(
       response=>{
 
-        response.mensajes.forEach(element => {
+        this.mensajes = response;
+
+        this.mensajes.forEach(element => {
           if(element.ticket == this.id){
             this.mensajes.push(element);
           }
@@ -142,7 +144,7 @@ export class ChatTicketComponent implements OnInit, DoCheck {
       if(this.close_ticket){
         //  enviar y cerrar ticket
         let data={
-          de:this.identity._id,
+          de:this.identity.uid,
           para:'5ef640b75ee066601c6ed1c0',
           msm:msmForm.value.msm,
           ticket:this.id,
@@ -165,7 +167,7 @@ export class ChatTicketComponent implements OnInit, DoCheck {
       }
       else{
         let data={
-          de:this.identity._id,
+          de:this.identity.uid,
           para:'5ef640b75ee066601c6ed1c0',
           msm:msmForm.value.msm,
           ticket:this.id,

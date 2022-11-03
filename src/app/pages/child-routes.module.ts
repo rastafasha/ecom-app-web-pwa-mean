@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DireccionEditComponent } from '../admin/direccion-edit/direccion-edit.component';
 import { DireccionesComponent } from '../admin/direcciones/direcciones.component';
+import { ChatTicketComponent } from '../admin/ordenes/chat-ticket/chat-ticket.component';
 import { DetalleOrdenComponent } from '../admin/ordenes/detalle-orden/detalle-orden.component';
 import { IndexOrdenesComponent } from '../admin/ordenes/index-ordenes/index-ordenes.component';
 import { PerfilComponent } from '../admin/perfil/perfil.component';
@@ -35,8 +36,8 @@ const childRoutes: Routes = [
   { path: 'cursos', component: CursosComponent},
   { path: 'curso/:id', component: CursoComponent},
   { path: 'productos', component: ProductosComponent},
-  { path: 'producto/:slug', component: ProductoComponent},
-  // { path: 'producto/:id', component: ProductoComponent},
+  // { path: 'producto/:slug', component: ProductoComponent},
+  { path: 'producto/:id', component: ProductoComponent},
   { path: 'blogs', component: BlogListComponent},
   { path: 'blog/:id', component: BlogDetailComponent},
   { path: 'about', component: AboutIndexComponent},
@@ -55,6 +56,7 @@ const childRoutes: Routes = [
     { path: 'cuenta/direccion/edit/:id', component: DireccionEditComponent},
     { path: 'cuenta/ordenes', component: IndexOrdenesComponent},
     { path: 'cuenta/ordenes/detalles/:id', component: DetalleOrdenComponent},
+    { path: 'cuenta/ordenes/tickets/:id', component: ChatTicketComponent},
 
 
 

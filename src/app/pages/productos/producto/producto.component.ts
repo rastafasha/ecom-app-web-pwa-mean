@@ -32,11 +32,11 @@ declare var $:any;
 })
 export class ProductoComponent implements OnInit {
 
-  producto: Producto;
+  producto: any = [];
   categories: Categoria[];
   imagenSerUrl = environment.mediaUrl;
 
-  public socket = io('http://localhost:5000');
+  public socket = io(environment.soketServer);
 
   public slug: Producto;
   public selectores : any = [];
@@ -91,6 +91,12 @@ export class ProductoComponent implements OnInit {
   /*NEWST */
 
   public news_productos : any = {};
+
+  public postales;
+  public radio_postal;
+  public medio_postal : any = {};
+  public data_cupon;
+  public precio_envio;
 
   constructor(
     public productoService: ProductoService,
@@ -276,9 +282,18 @@ export class ProductoComponent implements OnInit {
   ngOnInit(): void {
 
     window.scrollTo(0,0);
-    // this.activatedRoute.params.subscribe( ({id}) => this.obtenerProducto(id));
-    // this.activatedRoute.params.subscribe( ({id}) => this.init_data(id));
+    this.activatedRoute.params.subscribe( ({id}) => this.obtenerProducto(id));
+    this.activatedRoute.params.subscribe( ({id}) => this.init_data(id));
+    this.activatedRoute.params.subscribe( ({id}) => this.getGalleryProducto(id));
+    this.activatedRoute.params.subscribe( ({id}) => this.getColorProducto(id));
+    this.activatedRoute.params.subscribe( ({id}) => this.getSelectorProducto(id));
     this.obtenerCategorias();
+    this.listar_postal();
+
+    this.socket.on('new-stock', function (data) {
+      this.init_data();
+
+    }.bind(this));
 
     // new Drift(document.querySelector('#active_img_thumb'), {
 		// 	paneContainer: document.querySelector('.cz-image-zoom-pane'),
@@ -289,24 +304,24 @@ export class ProductoComponent implements OnInit {
     // });
 
 
-    this.activatedRoute.params.subscribe(
-      params=>{
-        this.slug = params['slug'];
+    // this.activatedRoute.params.subscribe(
+    //   params=>{
+    //     this.slug = params['slug'];
 
-        this.init_data();
-        this.obtenerProducto();
+    //     this.init_data();
+    //     // this.obtenerProducto();
 
-      }
-    );
+    //   }
+    // );
 
     this.listar_newest();
 
   }
 
-  init_data(){debugger
-    this.productoService.find_by_slug(this.slug).subscribe(
+  init_data(_id:string){
+    this.productoService.getProductoById(_id).subscribe(
       response =>{
-        this.producto = response.producto;
+        this.producto = response;
 
 
         if(this.identity){
@@ -330,44 +345,7 @@ export class ProductoComponent implements OnInit {
 
         this.precio_to_cart = this.producto.precio_ahora;
 
-        this._galeriaService.find_by_product(this.producto._id).subscribe(
-          response =>{
-            response.galeria.forEach((element,index) => {
-              if(index == 0){
-                this.first_img = element.imagen;
-              }
-                this.galeria.push({_id:element._id,imagen : element.imagen});
-            });
-            console.log(this.galeria);
-          },
-          error=>{
-            console.log(error);
 
-          }
-        );
-
-        this._colorService.listar(this.producto._id).subscribe(
-          response =>{
-            this.colores = response.colores;
-            this.color_to_cart = this.colores[0].color;
-            console.log(this.cantidad_to_cart);
-
-          },
-          error=>{
-
-          }
-        );
-
-        this._selectorService.listar(this.producto._id).subscribe(
-          response =>{
-            this.selectores = response.selectores;
-            console.log(this.selectores);
-
-          },
-          error=>{
-
-          }
-        );
       },
       error=>{
 
@@ -375,8 +353,53 @@ export class ProductoComponent implements OnInit {
     );
   }
 
-  obtenerProducto(){
-    this.productoService.find_by_slug(this.slug).subscribe(
+  getGalleryProducto(_id:string){
+    this._galeriaService.find_by_product(_id).subscribe(
+      response =>{
+        response.galeria.forEach((element,index) => {
+          if(index == 0){
+            this.first_img = element.imagen;
+          }
+            this.galeria.push({_id:element._id,imagen : element.imagen});
+        });
+        console.log(this.galeria);
+      },
+      error=>{
+        console.log(error);
+
+      }
+    );
+  }
+
+  getColorProducto(_id:string){
+    this._colorService.colorByProduct(_id).subscribe(
+      response =>{
+        this.colores = response;
+        this.color_to_cart = this.colores[0].color;
+        console.log(this.cantidad_to_cart);
+
+      },
+      error=>{
+
+      }
+    );
+  }
+
+  getSelectorProducto(_id:string){
+    this._selectorService.selectorByProduct(_id).subscribe(
+      response =>{
+        this.selectores = response;
+        console.log(this.selectores);
+
+      },
+      error=>{
+
+      }
+    );
+  }
+
+  obtenerProducto(_id:string){
+    this.productoService.getProductoById(_id).subscribe(
       resp=>{
         this.producto = resp;
         console.log(this.producto);
@@ -454,7 +477,7 @@ add_likes(idcoment){
 
   let data = {
     comentario : idcoment,
-    user : this.identity._id
+    user : this.identity.uid
   }
 
   this._comentarioService.add_likes(data).subscribe(
@@ -482,7 +505,7 @@ add_dislikes(idcoment){
 
   let data = {
     comentario : idcoment,
-    user : this.identity._id
+    user : this.identity.uid
   }
 
   this._comentarioService.add_dislikes(data).subscribe(
@@ -514,7 +537,7 @@ saveComent(reviewForm){
       pros: reviewForm.value.review_pros,
       cons: reviewForm.value.review_cons,
       estrellas: reviewForm.value.review_estrellas,
-      user: this.identity._id,
+      user: this.identity.uid,
       producto: this.producto._id,
     }
     this._comentarioService.registro(data).subscribe(
@@ -550,6 +573,30 @@ close_alert(){
 close_toast(){
   $('#dark-toast').removeClass('show');
       $('#dark-toast').addClass('hide');
+}
+
+listar_postal(){
+  this._postalService.listar().subscribe(
+    response =>{
+      this.postales = response.postales
+      this.postales.forEach((element,index) => {
+        if(index == 0){
+          this.radio_postal = element._id;
+          this.medio_postal = {
+            tipo_envio : element.titulo,
+            precio: element.precio,
+            tiempo: element.tiempo,
+            dias : element.dias
+          };
+          this.precio_envio = element.precio;
+        }
+      });
+
+    },
+    error=>{
+
+    }
+  );
 }
 
 

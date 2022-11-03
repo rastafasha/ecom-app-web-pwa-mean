@@ -18,6 +18,7 @@ declare var $:any;
 
 import { WebSocketService } from 'src/app/services/web-socket.service';
 import * as io from "socket.io-client";
+import { Direccion } from '../../models/direccion.model';
 
 @Component({
   selector: 'app-carrito',
@@ -28,12 +29,12 @@ export class CarritoComponent implements OnInit {
 
   @ViewChild('paypal',{static:true}) paypalElement : ElementRef;
 
-  soketUrl = environment.soketServer;
 
-  public carrito : Array<any> = [];
+
   public direcciones;
   public identity;
-  public subtotal = 0;
+  public carrito : Array<any> = [];
+  public subtotal : any = 0;
   public url;
   public cupon;
   public msm_error_cupon=false;
@@ -50,7 +51,7 @@ export class CarritoComponent implements OnInit {
 
   public precio_envio;
 
-  public socket = io('http://localhost:5000');
+  public socket = io(environment.soketServer);
 
 
   //DATA
@@ -58,6 +59,7 @@ export class CarritoComponent implements OnInit {
   public medio_postal : any = {};
   public data_cupon;
   public id_direccion = '';
+  public direccion : any;
   public data_direccion : any = {};
   public data_detalle : Array<any> = [];
   public data_venta : any = {};
@@ -84,6 +86,7 @@ export class CarritoComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.get_direccion();
     if(this.identity){
       this.socket.on('new-stock', function (data) {
         this.listar_carrito();
@@ -96,10 +99,7 @@ export class CarritoComponent implements OnInit {
       this.listar_postal();
       this.listar_carrito();
 
-
-
       this.listar_direcciones();
-      //
 
         paypal.Buttons({
 
@@ -151,7 +151,7 @@ export class CarritoComponent implements OnInit {
                         this.listar_carrito();
                         this.socket.emit('save-carrito', {new:true});
                         this.socket.emit('save-stock', {new:true});
-                        this._router.navigate(['/cuenta/ordenes']);
+                        this._router.navigate(['/app/cuenta/ordenes']);
                       },
                       error=>{
                         console.log(error);
@@ -190,10 +190,10 @@ export class CarritoComponent implements OnInit {
     this.carrito.forEach((element,index) => {
         this._carritoService.remove_carrito(element._id).subscribe(
           response =>{
-
+            this.listar_carrito();
           },
           error=>{
-
+            console.log(error);
           }
         );
     });
@@ -205,7 +205,7 @@ export class CarritoComponent implements OnInit {
 
       this._carritoService.preview_carrito(this.identity.uid).subscribe(
         response =>{
-          this.carrito = response.carrito;
+          this.carrito = response;
 
           this.carrito.forEach(element => {
             this.subtotal = Math.round(this.subtotal + (element.precio * element.cantidad));
@@ -260,7 +260,7 @@ export class CarritoComponent implements OnInit {
   listar_carrito(){
     this._carritoService.preview_carrito(this.identity.uid).subscribe(
       response =>{
-        this.carrito = response.carrito;
+        this.carrito = response;
         this.subtotal = 0;
         this.carrito.forEach(element => {
           this.subtotal = Math.round(this.subtotal + (element.precio * element.cantidad));
@@ -278,7 +278,7 @@ export class CarritoComponent implements OnInit {
 
       },
       error=>{
-
+        console.log(error);
 
       }
     );
@@ -290,7 +290,7 @@ export class CarritoComponent implements OnInit {
         this.subtotal = Math.round(this.subtotal - (response.carrito.precio*response.carrito.cantidad));
         this._carritoService.preview_carrito(this.identity.uid).subscribe(
           response =>{
-            this.carrito = response.carrito;
+            this.carrito = response;
             this.socket.emit('save-carrito', {new:true});
           },
           error=>{
@@ -333,7 +333,8 @@ export class CarritoComponent implements OnInit {
 
     this._direccionService.get_direccion(this.id_direccion).subscribe(
       response =>{
-        this.data_direccion = response.direccion;
+        this.data_direccion = response;
+        console.log(this.data_direccion);
       },
       error=>{
 

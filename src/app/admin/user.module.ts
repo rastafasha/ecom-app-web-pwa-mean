@@ -13,7 +13,7 @@ import { DireccionEditComponent } from './direccion-edit/direccion-edit.componen
 import { IndexOrdenesComponent } from './ordenes/index-ordenes/index-ordenes.component';
 import { DetalleOrdenComponent } from './ordenes/detalle-orden/detalle-orden.component';
 import { IndexTicketComponent } from './ordenes/index-ticket/index-ticket.component';
-// import { ChatTicketComponent } from './ordenes/chat-ticket/chat-ticket.component';
+import { ChatTicketComponent } from './ordenes/chat-ticket/chat-ticket.component';
 
 
 
@@ -26,7 +26,7 @@ import { IndexTicketComponent } from './ordenes/index-ticket/index-ticket.compon
     IndexOrdenesComponent,
     DetalleOrdenComponent,
     IndexTicketComponent,
-    // ChatTicketComponent
+    ChatTicketComponent
 
   ],
   exports: [
@@ -37,7 +37,7 @@ import { IndexTicketComponent } from './ordenes/index-ticket/index-ticket.compon
     IndexOrdenesComponent,
     DetalleOrdenComponent,
     IndexTicketComponent,
-    // ChatTicketComponent
+    ChatTicketComponent
   ],
   imports: [
     CommonModule,

@@ -65,3 +65,57 @@ iframe .videom {
 .star-rating .fa-star.active {
     color: var(--star-color);
 }
+
+.galeria-prod {
+    display: grid;
+    grid-template-columns: repeat(4, 95px);
+    grid-template-rows: repeat(1, 18vw);
+    grid-gap: 10px;
+    height: 70px;
+}
+
+.gallery__img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.modal-content {
+    z-index: 9999999 !important;
+}
+
+.modal-backdrop {
+    position: relative !important;
+    background-color: transparent !important;
+}
+
+.precioantes {
+    text-decoration: line-through;
+}
+
+.cartlist {
+    width: 30rem;
+}
+
+.cartlist .items {
+    width: 30rem;
+    overflow: hidden;
+    overflow-y: scroll;
+    margin-left: 0 !important;
+}
+
+.cartlist .subtotal {
+    position: absolute;
+    bottom: 30px;
+    background-color: #f2f2f2;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    border-top: 1px solid #ccc;
+}
+
+.cartlist .btn {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+}

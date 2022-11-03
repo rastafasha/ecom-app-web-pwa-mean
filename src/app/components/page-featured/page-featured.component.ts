@@ -42,7 +42,7 @@ export class PageFeaturedComponent implements OnInit {
     this.pageService.getPages().subscribe(
       pages => {
         this.pages = pages;
-        console.log(this.pages);
+        // console.log(this.pages);
       }
     )
   }

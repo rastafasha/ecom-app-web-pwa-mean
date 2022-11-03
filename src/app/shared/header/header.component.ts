@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, DoCheck } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartItemModel } from 'src/app/models/cart-item-model';
 import { Categoria } from 'src/app/models/categoria.model';
@@ -26,7 +26,7 @@ declare var $:any;
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, DoCheck {
 
   @Input() cartItem: CartItemModel;
   cartItems: any[] = [];
@@ -43,7 +43,7 @@ export class HeaderComponent implements OnInit {
   public carrito : Array<any> = [];
   public subtotal : any = 0;
 
-  public socket = io('http://localhost:5000');
+  public socket = io(environment.soketServer);
 
   constructor(
     public categoryService: CategoryService,
@@ -63,6 +63,11 @@ export class HeaderComponent implements OnInit {
 
     // this.socketWebService.outEven.subscribe()
    }
+
+
+   ngDoCheck(): void {
+    this.identity = this.usuarioService.usuario;
+  }
 
 
 
@@ -95,14 +100,13 @@ export class HeaderComponent implements OnInit {
 
       this.show_Carrito();
 
-      this._productoService.listar_autocomplete().subscribe(
+      this._productoService.getProductos().subscribe(
         response =>{
+          this.productos = response;
 
-          if(response.data.length >= 1){
-            response.data.forEach(element => {
+          if(this.productos.length >= 1){
+            this.productos.forEach(element => {
               this.productos.push(element.titulo);
-
-
             });
           }
 
@@ -131,13 +135,14 @@ export class HeaderComponent implements OnInit {
   }
 
   show_Carrito(){
-    this._carritoService.preview_carrito(this.identity._id).subscribe(
+    this._carritoService.preview_carrito(this.identity.uid).subscribe(
       response =>{
-        this.carrito = response.carrito;
+        this.carrito = response;
 
         this.carrito.forEach(element => {
           this.subtotal = this.subtotal + (element.precio*element.cantidad);
         });
+        console.log(this.carrito);
 
       },
       error=>{
@@ -150,9 +155,9 @@ export class HeaderComponent implements OnInit {
     this._carritoService.remove_carrito(id).subscribe(
       response=>{
         this.subtotal = this.subtotal - (response.carrito.precio*response.carrito.cantidad);
-        this._carritoService.preview_carrito(this.identity._id).subscribe(
+        this._carritoService.preview_carrito(this.identity.uid).subscribe(
           response =>{
-            this.carrito = response.carrito;
+            this.carrito = response;
             this.socket.emit('save-carrito_dos', {new:true});
 
 
@@ -174,7 +179,7 @@ export class HeaderComponent implements OnInit {
     return this.categoryService.getCategories().subscribe(
       resp=>{
         this.categories = resp;
-        console.log(this.categories);
+        // console.log(this.categories);
       }
     )
   }

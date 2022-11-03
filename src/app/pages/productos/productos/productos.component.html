@@ -34,7 +34,7 @@
                     <figure class="item" *ngFor="let producto of productos |  paginate: { itemsPerPage: count, currentPage: p }">
                         <div class="product product-style-1">
                             <div class="img-wrapper">
-                                <a [routerLink]="['../producto/', producto.slug]">
+                                <a [routerLink]="['../producto/', producto._id]">
                                     <img class="img-responsive" [src]="producto.img | imagenPipe: 'productos'" alt="{{producto.titulo}} thumbnail" />
                                     <!-- <img class="img-responsive" src="{{imagenSerUrl}}/productos/{{producto.img}}" alt="{{producto.titulo}} thumbnail" /> -->
                                 </a>
@@ -59,7 +59,7 @@
                             </div>
                             <figcaption class="desc text-center">
                                 <h3>
-                                    <a class="product-name" [routerLink]="['../producto/', producto.slug]">{{producto.titulo}}</a>
+                                    <a class="product-name" [routerLink]="['../producto/', producto._id]">{{producto.titulo}}</a>
                                 </h3>
                                 <span class="price">${{producto.precio_ahora}}</span><br>
                                 <span class="price">${{producto.precio_antes}}</span>

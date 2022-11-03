@@ -23,7 +23,7 @@ export class BlogFeaturedComponent implements OnInit {
     this.blogService.getBlogs().subscribe(
       blogs => {
         this.blogs = blogs;
-        console.log(this.blogs);
+        // console.log(this.blogs);
       }
     )
   }

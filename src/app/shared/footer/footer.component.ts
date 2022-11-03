@@ -4,7 +4,6 @@ import { Categoria } from 'src/app/models/categoria.model';
 import { Congeneral } from 'src/app/models/congeneral.model';
 import { CategoryService } from 'src/app/services/category.service';
 import { CongeneralService } from '../../services/congeneral.service';
-import { WebSocketService } from 'src/app/services/web-socket.service';
 
 @Component({
   selector: 'app-footer',
@@ -22,7 +21,6 @@ export class FooterComponent implements OnInit {
     public configuracionService: CongeneralService,
     public activatedRoute: ActivatedRoute,
     public categoryService: CategoryService,
-    public wsService: WebSocketService
   ) { }
 
   ngOnInit(): void {
@@ -44,7 +42,7 @@ export class FooterComponent implements OnInit {
     return this.categoryService.getCategories().subscribe(
       resp=>{
         this.categories = resp;
-        console.log(this.categories);
+        // console.log(this.categories);
       }
     )
   }

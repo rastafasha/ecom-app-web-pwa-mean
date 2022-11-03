@@ -106,30 +106,30 @@
                 <aside class="right">
                     <div *ngIf="identity" class="navbar-tool dropdown ml-3">
                         <button type="button" class="btn btn-outline-success btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="navbar-tool-label">{{carrito.length}}</span> &nbsp;<i class="navbar-tool-icon czi-cart"></i>&nbsp;<small>Mi carrito</small>&nbsp; ${{subtotal}}
+                        <span class="navbar-tool-label">{{carrito.cantidad}}</span> &nbsp;<i class="navbar-tool-icon czi-cart"></i>&nbsp;<small>Mi carrito</small>&nbsp; ${{subtotal}}
                       </button>
 
 
                         <!-- Cart dropdown-->
-                        <div class="dropdown-menu dropdown-menu-right" style="width: 20rem;">
-                            <!-- <div class="dropdown-menu dropdown-menu-right" style="width: 20rem;" *ngIf="carrito.length != 0"> -->
-                            <div class="widget widget-cart px-3 pt-2 pb-3">
+
+                        <div class="dropdown-menu dropdown-menu-right cartlist" *ngIf="carrito.cantidad != 0">
+                            <div class="widget widget-cart px-3 pt-2 pb-3 items">
                                 <div style="height: 15rem;" data-simplebar data-simplebar-auto-hide="false">
                                     <div class="widget-cart-item pb-2 border-bottom" *ngFor="let item of carrito">
                                         <button class="close text-danger" type="button" aria-label="Remove" (click)="remove_producto(item._id)">
                                           <span aria-hidden="true">&times;</span>
                                         </button>
                                         <div class="media align-items-center">
-                                            <a class="d-block mr-2" [routerLink]="['/producto/',item.producto.slug]"><img width="64" [src]="producto.img | imagenPipe: 'productos'" alt="Product" /></a>
+                                            <a class="d-block mr-2" [routerLink]="['../producto/',item.producto._id]"><img width="64" [src]="item.producto.img | imagenPipe: 'productos'" alt="Product" /></a>
                                             <div class="media-body">
-                                                <h6 class="widget-product-title"><a [routerLink]="['/producto/',item.producto.slug]">{{item.producto.titulo.substr(0,25)}}</a></h6>
+                                                <h6 class="widget-product-title"><a [routerLink]="['../producto/',item.producto._id]">{{item.producto.titulo.substr(0,25)}}</a></h6>
                                                 <div class="widget-product-meta"><span class="text-accent mr-2">${{item.precio}}</span><span class="text-muted">x {{item.cantidad}}</span></div>
                                             </div>
                                         </div>
                                     </div>
 
                                 </div>
-                                <div class="d-flex flex-wrap justify-content-between align-items-center py-3">
+                                <div class="subtotal">
                                     <div class="font-size-sm mr-2 py-2">
                                         <span class="text-muted">Subtotal:</span>
                                         <span class="text-accent font-size-base ml-1">${{subtotal}}</span>
