@@ -4,15 +4,15 @@
             <h3 class="heading">Our Featured Products</h3>
         </div>
         <div class="row">
-            <div class="row js-product-masonry-layout-3 product-masonry-layout-3">
+            <div class="js-product-masonry-layout-3 product-masonry-layout-3">
                 <figure class="item first" *ngFor="let producto of productos | slice:0:1">
                     <div class="product product-style-2 no-border" *ngIf="producto.isFeatured == true">
                         <div class="img-wrapper">
-                            <a [routerLink]="['../producto', producto.slug]">
+                            <a [routerLink]="['../producto', producto._id]">
                                 <img class="img-responsive" [src]="producto.img | imagenPipe: 'productos'" alt="product thumbnail {{producto.titulo}}">
                                 <!-- <img class="img-responsive" src="{{imagenSerUrl}}/productos/{{item.img}}" alt="product thumbnail"> -->
                             </a>
-                            <div class="product-control-wrapper bottom-right">
+                            <!-- <div class="product-control-wrapper bottom-right">
                                 <div class="wrapper-control-item">
                                     <a class="js-quick-view" data-toggle="modal" [attr.data-target]="'#' + producto._id">
                                         <span class="lnr lnr-eye"></span>
@@ -28,10 +28,10 @@
                                         <span class="lnr lnr-cart"></span>
                                     </a>
                                 </div>
-                            </div>
+                            </div> -->
                             <figcaption class="desc">
                                 <h3>
-                                    <a class="product-name" [routerLink]="['../producto', producto.slug]">{{producto.titulo}}</a>
+                                    <a class="product-name" [routerLink]="['../producto', producto._id]">{{producto.titulo}}</a>
                                 </h3>
                                 <span class="price ">${{producto.precio_ahora}}</span><br>
                                 <span class="price precioviejo">${{producto.precio_antes}}</span>
@@ -42,11 +42,11 @@
                 <figure class="item itemgroup" *ngFor="let producto of productos | slice:1:5">
                     <div class="product product-style-2 no-border">
                         <div class="img-wrapper">
-                            <a [routerLink]="['../producto', producto.slug]">
+                            <a [routerLink]="['../producto', producto._id]">
                                 <img class="img-responsive" [src]="producto.img | imagenPipe: 'productos'" alt="product thumbnail {{producto.titulo}}">
                                 <!-- <img class="img-responsive" src="{{imagenSerUrl}}/productos/{{item.img}}" alt="product thumbnail"> -->
                             </a>
-                            <div class="product-control-wrapper bottom-right">
+                            <!-- <div class="product-control-wrapper bottom-right">
                                 <div class="wrapper-control-item">
                                     <a class="js-quick-view" data-toggle="modal" [attr.data-target]="'#' + producto._id">
                                         <span class="lnr lnr-eye"></span>
@@ -62,10 +62,10 @@
                                         <span class="lnr lnr-cart"></span>
                                     </a>
                                 </div>
-                            </div>
+                            </div> -->
                             <figcaption class="desc">
                                 <h3>
-                                    <a class="product-name" [routerLink]="['../producto', producto.slug]">{{producto.titulo}}</a>
+                                    <a class="product-name" [routerLink]="['../producto', producto._id]">{{producto.titulo}}</a>
                                 </h3>
                                 <span class="price ">${{producto.precio_ahora}}</span><br>
                                 <span class="price precioviejo">${{producto.precio_antes}}</span>

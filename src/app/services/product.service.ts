@@ -80,11 +80,11 @@ export class ProductoService {
    * @param _id {_id}: objeto a obtener
    */
 
-  listar_productoCat(_id: string): Observable<Producto>{
-    const url = `${base_url}/productos/productos_general/cat/categoria/${_id}`;
+  listar_productoCat(_id: any): Observable<Producto>{
+    const url = `${base_url}/productos/productos_general/cat/${_id}`;
     return this.http.get<any>(url, this.headers)
     .pipe(
-      map((resp:{ok: boolean, producto_data: Producto}) => resp.producto_data)
+      map((resp:{ok: boolean, productos: Producto}) => resp.productos)
       );
 
   }
@@ -117,7 +117,7 @@ export class ProductoService {
 
   aumentar_ventas(id):Observable<any>{
 
-    const url = `${base_url}/productos/productos_ventas/aumentar//${id}`;
+    const url = `${base_url}/productos/productos_ventas/aumentar/${id}`;
     return this.http.get<any>(url, this.headers)
     .pipe(
       map((resp:{ok: boolean, producto_data: Producto}) => resp.producto_data)

@@ -55,10 +55,10 @@ export class DireccionService {
   }
 
   get_direccion(id:string){
-    const url = `${base_url}/direccions/direccion/data/${id}`;
+    const url = `${base_url}/direccions/${id}`;
     return this._http.get<any>(url, this.headers)
       .pipe(
-        map((resp:{ok: boolean, direccionid: Direccion}) => resp.direccionid)
+        map((resp:{ok: boolean, direccion: Direccion}) => resp.direccion)
         );
   }
 

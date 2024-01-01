@@ -16,6 +16,7 @@ import { ProductoService } from 'src/app/services/product.service';
 
 import { WebSocketService } from 'src/app/services/web-socket.service';
 import * as io from "socket.io-client";
+import { CursoService } from 'src/app/services/curso.service';
 
 
 declare var jQuery:any;
@@ -39,6 +40,7 @@ export class HeaderComponent implements OnInit, DoCheck {
   public url;
   public identity;
   public productos : Array<any> = [];
+  public cursos : Array<any> = [];
   public filter;
   public carrito : Array<any> = [];
   public subtotal : any = 0;
@@ -56,6 +58,7 @@ export class HeaderComponent implements OnInit, DoCheck {
     public activatedRoute: ActivatedRoute,
     private _carritoService:CarritoService,
     private _productoService : ProductoService,
+    private cursoService : CursoService,
     private webSocketService: WebSocketService,
   ) {
     this.identity = usuarioService.usuario;
@@ -73,14 +76,12 @@ export class HeaderComponent implements OnInit, DoCheck {
 
 
    ngOnInit(): void {
-    // console.log("socket =============>>",this.socket);
+
 
 
     if(this.storageService.existCart()){
       this.cartItems = this.storageService.getCart();
     }
-    this.getItem();
-    this.total = this.getTotal();
     this.obtenerCategorias();
     //this.links = document.querySelectorAll('.selector');//obtiene clase del div // se dispara despues de inicializado el componente
 
@@ -115,6 +116,22 @@ export class HeaderComponent implements OnInit, DoCheck {
 
         }
       );
+
+      this.cursoService.getCursos().subscribe(
+        response =>{
+          this.cursos = response;
+
+          if(this.cursos.length >= 1){
+            this.cursos.forEach(element => {
+              this.cursos.push(element.titulo);
+            });
+          }
+
+        },
+        error=>{
+
+        }
+      );
     }else{
       this.obtenerCategorias();
       this.url = environment.baseUrl;
@@ -130,8 +147,14 @@ export class HeaderComponent implements OnInit, DoCheck {
 
 
 
-  search_by_filter(){
-    this.router.navigate(['/productos/search/',this.filter]);
+  search_by_filter(termino: string){
+
+    if(termino.length === 0){
+      return;
+    }
+
+    this.router.navigateByUrl(`../search/${termino}`);
+    // this.router.navigate(['../search/',this.filter]);
   }
 
   show_Carrito(){
@@ -184,59 +207,6 @@ export class HeaderComponent implements OnInit, DoCheck {
     )
   }
 
-
-
-  getItem():void{
-    this.messageService.getMessage().subscribe((product:Producto)=>{
-      let exists = false;
-      this.cartItems.forEach(item =>{
-        if(item.productId === product._id){
-          exists = true;
-          item.quantity++;
-        }
-      });
-      if(!exists){
-        const cartItem = new CartItemModel(product);
-        this.cartItems.push(cartItem);
-
-      }
-      this.total = this.getTotal();
-      this.storageService.setCart(this.cartItems);
-
-    });
-  }
-
-
-  getItemsList(): any[]{
-
-    const items: any[] = [];
-    let item = {};
-    this.cartItems.forEach((it: CartItemModel)=>{
-      item = {
-        name: it.productName,
-        unit_amount: {
-          currency_code: 'USD',
-          value: it.productPrice,
-        },
-        quantity: it.quantity,
-        category: it.category,
-      };
-      items.push(item);
-    });
-    return items;
-  }
-
-
-
-
-  getTotal():number{
-    let total =  0;
-    this.cartItems.forEach(item => {
-      total += item.quantity * item.productPrice;
-    });
-    return +total.toFixed(2);
-  }
-
   logout(){
     this.usuarioService.logout();
   }
@@ -247,6 +217,15 @@ export class HeaderComponent implements OnInit, DoCheck {
     var menuLateral = document.getElementsByClassName("sidemenu");
       for (var i = 0; i<menuLateral.length; i++) {
          menuLateral[i].classList.toggle('active');
+
+      }
+  }
+
+  openBuscar(){
+
+    var menuLateral = document.getElementsByClassName("btn-open-search-form");
+      for (var i = 0; i<menuLateral.length; i++) {
+         menuLateral[i].classList.add('open');
 
       }
   }

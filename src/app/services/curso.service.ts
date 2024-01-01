@@ -63,6 +63,20 @@ getRecentCursos() {
   );
 }
 
+listar_newest():Observable<any>{
+  const url = `${base_url}/cursos/cursos_nuevos/show_curso`;
+  return this.http.get(url,  this.headers);
+}
+
+aumentar_ventas(id):Observable<any>{
+
+  const url = `${base_url}/cursos/cursos_ventas/aumentar/${id}`;
+  return this.http.get<any>(url, this.headers)
+  .pipe(
+    map((resp:{ok: boolean, curso_data: Curso}) => resp.curso_data)
+    );
+}
+
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

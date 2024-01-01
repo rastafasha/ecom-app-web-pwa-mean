@@ -57,7 +57,7 @@ export class UsuarioService {
 
   guardarLocalStorage(token: string, menu: any){
     localStorage.setItem('token', token);
-    localStorage.setItem('menu', JSON.stringify(menu));
+    // localStorage.setItem('menu', JSON.stringify(menu));
   }
 
 
@@ -80,17 +80,17 @@ export class UsuarioService {
 
   logout(){
     localStorage.removeItem('token');
-    localStorage.removeItem('menu');
-    this.router.navigateByUrl('/');
+    // localStorage.removeItem('menu');
+    this.router.navigateByUrl('/home');
 
     if(this.router === undefined){
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('/home');
     }
 
 
     this.auth2.signOut().then(()=>{
       this.ngZone.run(()=>{
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/home');
       })
     })
   }
@@ -115,7 +115,7 @@ export class UsuarioService {
   }
 
   crearUsuario(formData: RegisterForm){
-    return this.http.post(`${base_url}/usuarios`, formData)
+    return this.http.post(`${base_url}/usuarios/registro`, formData)
     .pipe(
       tap((resp: any) => {
         this.guardarLocalStorage(resp.token, resp.menu);
@@ -207,6 +207,24 @@ export class UsuarioService {
     const url = `${base_url}/usuarios`;
     return this.http.get(url, this.headers)
   }
+
+  set_recovery_token(email):Observable<any>{
+
+    const url = `${base_url}/usuarios/user_token/set/${email}`;
+    return this.http.get<any>(url, this.headers)
+  }
+
+
+  verify_token(email,codigo):Observable<any>{
+    const url = `${base_url}/usuarios/user_verify/token/${email}/${codigo}`;
+    return this.http.get<any>(url, this.headers)
+  }
+
+  change_password(email,data):Observable<any>{debugger
+    const url = `${base_url}/usuarios/user_password/change/${email}/${data}`;
+    return this.http.put<any>(url, this.headers)
+  }
+
 
 
 

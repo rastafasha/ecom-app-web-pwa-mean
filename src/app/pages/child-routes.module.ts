@@ -24,6 +24,7 @@ import { AboutIndexComponent } from './nosotros/about-index/about-index.componen
 import { AboutComponent } from './nosotros/about/about.component';
 import { ProductoComponent } from './productos/producto/producto.component';
 import { ProductosComponent } from './productos/productos/productos.component';
+import { SearchComponent } from './search/search.component';
 
 
 
@@ -47,7 +48,7 @@ const childRoutes: Routes = [
   { path: 'privacy-policy', component: PrivacypolicyComponent},
   { path: 'contact', component: ContactComponent},
   // { path: 'category/:id', component: CategoriasComponent},
-  { path: 'category/:nombre', component: CategoriasComponent},
+  { path: 'category/:id', component: CategoriasComponent},
 
     { path: 'my-account', component: MyaccountComponent},
     { path: 'cuenta/perfil', component: PerfilComponent},

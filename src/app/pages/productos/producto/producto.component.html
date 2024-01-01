@@ -27,7 +27,7 @@
                                 </div>
 
                                 <!-- gallery -->
-                                <div class="col-lg-7 pr-lg-0 pt-lg-4">
+                                <!-- <div class="col-lg-7 pr-lg-0 pt-lg-4">
                                     <div class="cz-product-gallery">
 
                                         <div class="galeria-prod">
@@ -42,18 +42,19 @@
 
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <!-- gallery -->
                             </div>
                             <div class="col-md-6">
                                 <!-- toast -->
                                 <div class="toast-container toast-top-right">
                                     <div class="toast mb-3 fade hide" id="dark-toast" data-delay="5000" role="alert" aria-live="assertive" aria-atomic="true">
-                                        <div class="toast-header bg-accent text-white"><i class="czi-cart mr-2"></i>
-                                            <h6 class="font-size-sm text-white mb-0 mr-auto">Notificación</h6>
+                                        <div class="toast-header bg-success text-white" style="border-radius: 14px 14px 0 0 ; padding: 10px">
+
+                                            <h6 class="font-size-sm text-white mb-0 mr-auto"> <i class=" fa fa-shopping-cart"></i> &nbsp;Exito!</h6>
                                             <button class="close text-white ml-2 mb-1" type="button" data-dismiss="toast" aria-label="Close" (click)="close_toast()"><span aria-hidden="true">×</span></button>
                                         </div>
-                                        <div class="toast-body text-accent">Se agrego el producto al carrito.</div>
+                                        <div class="toast-body text-success">Se agrego el producto al carrito.</div>
                                     </div>
                                 </div>
                                 <!-- toast -->
@@ -115,7 +116,9 @@
                                                     <span *ngIf="comentarios.length != 1">Reseñas</span>
                                                     </span>
                                                 </a>
-                                                <button class="btn-wishlist mr-0 mr-lg-n3" type="button" data-toggle="tooltip" title="" data-original-title="Add to wishlist"><i class="czi-heart"></i></button>
+                                                <button class="btn btn-wishlist mr-0 mr-lg-n3" type="button" data-toggle="tooltip" title="" data-original-title="Add to wishlist">
+                                                  <i class="fa fa-heart-o"></i>
+                                                </button>
                                             </div>
                                             <div class="mb-3"><span class="h3 font-weight-normal text-accent mr-1">${{producto.precio_ahora}}</span>
                                                 <del class="text-muted font-size-lg mr-3">${{producto.precio_antes}}</del>
@@ -139,20 +142,20 @@
                                                 </span>
                                             </div>
                                             <div class="position-relative mr-n4 mb-3">
-                                                <ng-container *ngFor="let color of colores; let indice = index">
+                                                <div *ngFor="let color of colores; let indice = index">
                                                     <div class="custom-control custom-option custom-control-inline mb-2">
-                                                        <ng-container *ngIf="color.color == color_to_cart">
+                                                        <div *ngIf="color.color == color_to_cart">
                                                             <input class="custom-control-input" type="radio" name="color_to_cart" [attr.id]="'color-'+indice" data-label="colorOption" checked (change)="get_color($event,color)">
                                                             <label class="custom-option-label rounded-circle" [attr.for]="'color-'+indice"><span class="custom-option-color rounded-circle" [ngStyle]="{'background': color.color}"></span></label>
-                                                        </ng-container>
-                                                        <ng-container *ngIf="color.color != color_to_cart">
+                                                        </div>
+                                                        <div *ngIf="color.color != color_to_cart">
                                                             <input class="custom-control-input" type="radio" name="color_to_cart" [attr.id]="'color-'+indice" data-label="colorOption" (change)="get_color($event,color)">
                                                             <label class="custom-option-label rounded-circle" [attr.for]="'color-'+indice"><span class="custom-option-color rounded-circle" [ngStyle]="{'background': color.color}"></span></label>
-                                                        </ng-container>
+                                                        </div>
                                                     </div>
-                                                </ng-container>
+                                                </div>
 
-                                                <div class="product-badge product-available mt-n1"><i class="fa fa-security-check"></i>Compra segura</div>
+                                                <div class="product-badge product-available mt-n1"><i class="fa fa-check-circle-o text-success"></i> &nbsp; Compra segura</div>
                                             </div>
                                             <form class="mb-grid-gutter" #carritoForm="ngForm" (ngSubmit)="add_to_cart(carritoForm)">
                                                 <div class="form-group">
@@ -160,7 +163,7 @@
                                                         <label class="font-weight-medium" for="product-size">{{producto.nombre_selector}}:</label>
                                                         <a class="nav-link-style font-size-sm" *ngIf="producto.subcategoria == 'Calzado'" data-toggle="modal" data-target="#sizes-modal" style="cursor: pointer;"><i class="czi-ruler lead align-middle mr-1 mt-n1"></i>Formato de tallas</a>
                                                     </div>
-                                                    <select class="custom-select" required="" id="product-size" name="selector_to_cart" [(ngModel)]="selector_to_cart">
+                                                    <select class="custom-select form-control" required="" id="product-size" name="selector_to_cart" [(ngModel)]="selector_to_cart">
                                                       <option value=" " selected disabled>Selecciona</option>
                                                       <option value="{{selector.titulo}}" *ngFor="let selector of selectores" >{{selector.titulo}}</option>
 
@@ -175,61 +178,8 @@
                                                 <div class="invalid-feedback" *ngIf="err_stock" style="display: block;">{{err_stock}}</div>
                                             </form>
                                             <!-- Product panels-->
-                                            <div class="accordion mb-4" id="productPanels">
-                                                <div class="card">
-                                                    <div class="card-header">
-                                                        <h3 class="accordion-heading"><a href="#productInfo" role="button" data-toggle="collapse" aria-expanded="true" aria-controls="productInfo"><i class="czi-list text-muted font-size-lg align-middle mt-n1 mr-2"></i>Descripción<span class="accordion-indicator"><i data-feather="chevron-up"></i></span></a></h3>
-                                                    </div>
-                                                    <div class="collapse show" id="productInfo" data-parent="#productPanels">
-                                                        <div class="card-body">
-
-                                                            <p class="text-justify" style="font-size: 14px;">{{producto.info_short}}</p>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="card">
-                                                    <div class="card-header">
-                                                        <h3 class="accordion-heading"><a class="collapsed" href="#shippingOptions" role="button" data-toggle="collapse" aria-expanded="true" aria-controls="shippingOptions"><i class="czi-delivery text-muted lead align-middle mt-n1 mr-2"></i>Opciones de envío<span class="accordion-indicator"><i data-feather="chevron-up"></i></span></a></h3>
-                                                    </div>
-                                                    <div class="collapse" id="shippingOptions" data-parent="#productPanels">
-                                                        <div class="card-body font-size-sm">
-
-                                                            <table class="postal">
-                                                                <thead>
-                                                                    <th>OP</th>
-                                                                    <th>Medio postal</th>
-                                                                    <th>Precio</th>
-                                                                </thead>
-                                                                <tbody *ngFor="let item of postales">
-                                                                    <tr>
-                                                                        <td *ngIf="item._id == radio_postal">
-                                                                            <input type="radio" class="form-control" style="height: 25px;width: 15px;" [attr.id]="'postal-'+item._id" name="radio" (change)="select_postal($event,item)" value="{{item._id}}" checked>
-                                                                        </td>
-                                                                        <td *ngIf="item._id != radio_postal">
-                                                                            <input type="radio" class="form-control" style="height: 25px;width: 15px;" [attr.id]="'postal-'+item._id" name="radio" (change)="select_postal($event,item)" value="{{item._id}}">
-                                                                        </td>
-                                                                        <td>
-                                                                            <!-- Blockquote -->
-                                                                            <blockquote class="blockquote" style="margin-bottom: 0.4rem;">
-                                                                                <p style="font-size: 13px;margin-bottom: 0px !important;">{{item.titulo}}</p>
-                                                                                <footer class="blockquote-footer">
-                                                                                    {{item.tiempo}}
-                                                                                </footer>
-                                                                            </blockquote>
-
-                                                                        </td>
-                                                                        <td>${{item.precio}}</td>
-
-                                                                    </tr>
-                                                                </tbody>
-
-                                                            </table>
-
-
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <div class="card shadow">
+                                                <p class="text-justify" style="font-size: 14px;">{{producto.info_short}}</p>
 
                                             </div>
                                             <!-- Sharing-->
@@ -260,7 +210,7 @@
                                             <a href="#Additional-Information" aria-controls="Additional-Information" role="tab" data-toggle="tab">Additional Information</a>
                                         </li>
                                         <li role="presentation">
-                                            <a href="#Review" aria-controls="Review" role="tab" data-toggle="tab">Review (2)</a>
+                                            <a href="#Review" aria-controls="Review" role="tab" data-toggle="tab">Review</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -413,7 +363,7 @@
                                                     <div class="d-flex justify-content-end pb-4">
                                                         <div class="form-inline flex-nowrap">
                                                             <label class="text-muted text-nowrap mr-2 d-none d-sm-block" for="sort-reviews">Ordenar por:</label>
-                                                            <select class="custom-select custom-select-sm" (change)="sort_coments()" [(ngModel)]="sort_data_coment">
+                                                            <select class="custom-select custom-select-sm form-control" (change)="sort_coments()" [(ngModel)]="sort_data_coment">
               <option value="fecha">Fecha</option>
               <option value="raiting">Popular</option>
               <option value="-raiting">Bajo rating</option>
@@ -426,7 +376,7 @@
                                                         <div class="product-review pb-4 mb-4 border-bottom">
                                                             <div class="d-flex mb-3">
                                                                 <div class="media media-ie-fix align-items-center mr-4 pr-2">
-                                                                    <img class="rounded-circle" width="50" [src]="url+'user/data/'+item.user.perfil" alt="Rafael Marquez">
+                                                                    <img class="rounded-circle" width="50" [src]="item.user.img | imagenPipe: 'usuarios'" alt="{{item.user.first_name}} {{item.user.last_name}}">
                                                                     <div class="media-body pl-3">
                                                                         <h6 class="font-size-sm mb-0">{{item.user.first_name}} {{item.user.last_name}}</h6><span class="font-size-ms text-muted">{{ item.createdAt | date:'MMM d, y' }}</span>
                                                                     </div>
@@ -513,7 +463,7 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="review-rating">Rating<span class="text-danger">*</span></label>
-                                                                <select class="custom-select" required="" name="review_estrellas" [(ngModel)]="review_estrellas">
+                                                                <select class="custom-select form-control" required="" name="review_estrellas" [(ngModel)]="review_estrellas">
                 <option value="" selected disabled>Selecciona</option>
                 <option value="5">5 estrellas</option>
                 <option value="4">4 estrellas</option>
@@ -559,16 +509,16 @@
                 <div class="shop-layout-1" id="page">
                     <section class="box-sm">
                         <div class="container pt-5 pb-5">
-                            <h2 class="h3 text-center pb-4">Productos nuevos</h2>
+                            <h2 class="h3 text-center pb-4" *ngIf="identity">Productos nuevos</h2>
                             <div class="row">
 
                                 <figure class="item col-xs-12 col-sm-3" *ngFor="let slide of news_productos; let indice = index">
                                     <div class="product product-style-1">
                                         <div class="img-wrapper">
-                                            <a [routerLink]="['../producto/', producto.slug]">
-                                                <img class="img-responsive" [src]="slide.img | imagenPipe: 'productos'" [title]="slide.title" alt="{{producto.titulo}} thumbnail" />
+                                            <a [routerLink]="['/app/producto/', slide._id]">
+                                                <img class="img-responsive" [src]="slide.img | imagenPipe: 'productos'" [title]="slide.titulo" alt="{{slide.titulo}} thumbnail" />
                                             </a>
-                                            <div class="product-control-wrapper bottom-right">
+                                            <!-- <div class="product-control-wrapper bottom-right">
                                                 <div class="wrapper-control-item item-wish-list">
                                                     <a class="js-wish-list js-notify-add-wish-list" href="#">
                                                         <span class="lnr lnr-heart"></span>
@@ -579,14 +529,14 @@
                                                         <span class="lnr lnr-cart"></span>
                                                     </a>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <figcaption class="desc text-center">
                                             <h3>
-                                                <a class="product-name" [routerLink]="['../producto/', producto.slug]">{{slide.titulo.substr(0,60)}}...</a>
+                                                <a class="product-name" [routerLink]="['/app/producto/', slide._id]">{{slide.titulo.substr(0,60)}}...</a>
                                             </h3>
                                             <p>
-                                                <a class="product-meta d-block font-size-xs pb-1" [routerLink]="['../category/',slide.categoria.nombre]">{{slide.categoria.nombre}} - {{slide.subcategoria}}s</a>
+                                                <a class="product-meta d-block font-size-xs pb-1" [routerLink]="['/app/category/',slide.categoria._id]">{{slide.categoria.nombre}} - {{slide.subcategoria | slice: 0:20}}s...</a>
                                             </p>
                                             <span class="price">${{producto.precio_ahora}}</span><br>
                                             <span class="price">${{producto.precio_antes}}</span>

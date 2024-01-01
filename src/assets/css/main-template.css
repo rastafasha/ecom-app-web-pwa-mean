@@ -18838,7 +18838,7 @@ body.modal-open .mm-slideout {
 
 .product-style-2 .desc {
     padding: 20px;
-    position: absolute;
+    position: relative;
     bottom: 0;
     left: 0;
 }
@@ -21912,7 +21912,7 @@ header .widget-control-header .dropdown-menu {
     float: left;
     width: 29.16667%;
     padding: 0 15px;
-    margin-bottom: 30px;
+    margin-bottom: 0px;
     box-sizing: border-box;
 }
 

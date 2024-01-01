@@ -14,7 +14,6 @@ import { ColorService } from "../../../services/color.service";
 import { SelectorService } from "src/app/services/selector.service";
 import { CarritoService } from 'src/app/services/carrito.service';
 
-import { PostalService } from "src/app/services/postal.service";
 import { ComentarioService } from "src/app/services/comentario.service";
 import { VentaService } from 'src/app/services/venta.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -34,7 +33,6 @@ export class ProductoComponent implements OnInit {
 
   producto: any = [];
   categories: Categoria[];
-  imagenSerUrl = environment.mediaUrl;
 
   public socket = io(environment.soketServer);
 
@@ -92,11 +90,7 @@ export class ProductoComponent implements OnInit {
 
   public news_productos : any = {};
 
-  public postales;
-  public radio_postal;
-  public medio_postal : any = {};
   public data_cupon;
-  public precio_envio;
 
   constructor(
     public productoService: ProductoService,
@@ -110,7 +104,6 @@ export class ProductoComponent implements OnInit {
     private _colorService :ColorService,
     private _selectorService : SelectorService,
     private _ventaService: VentaService,
-    private _postalService: PostalService,
     private _carritoService: CarritoService,
     private _comentarioService: ComentarioService,
     private webSocketService: WebSocketService,
@@ -132,8 +125,6 @@ export class ProductoComponent implements OnInit {
 
   get_color(event,color){
     this.color_to_cart = color.color;
-
-
   }
 
   sort_coments(){
@@ -271,6 +262,7 @@ export class ProductoComponent implements OnInit {
     this.productoService.listar_newest().subscribe(
       response =>{
         this.news_productos = response.data;
+        console.log(this.news_productos);
       },
       error=>{
 
@@ -288,7 +280,6 @@ export class ProductoComponent implements OnInit {
     this.activatedRoute.params.subscribe( ({id}) => this.getColorProducto(id));
     this.activatedRoute.params.subscribe( ({id}) => this.getSelectorProducto(id));
     this.obtenerCategorias();
-    this.listar_postal();
 
     this.socket.on('new-stock', function (data) {
       this.init_data();
@@ -315,6 +306,10 @@ export class ProductoComponent implements OnInit {
     // );
 
     this.listar_newest();
+
+    if(!this.identity){
+      this.router.navigateByUrl('/login');
+    }
 
   }
 
@@ -575,29 +570,6 @@ close_toast(){
       $('#dark-toast').addClass('hide');
 }
 
-listar_postal(){
-  this._postalService.listar().subscribe(
-    response =>{
-      this.postales = response.postales
-      this.postales.forEach((element,index) => {
-        if(index == 0){
-          this.radio_postal = element._id;
-          this.medio_postal = {
-            tipo_envio : element.titulo,
-            precio: element.precio,
-            tiempo: element.tiempo,
-            dias : element.dias
-          };
-          this.precio_envio = element.precio;
-        }
-      });
-
-    },
-    error=>{
-
-    }
-  );
-}
 
 
 }

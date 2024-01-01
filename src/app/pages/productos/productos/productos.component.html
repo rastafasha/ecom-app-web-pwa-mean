@@ -6,27 +6,7 @@
         <div class="overlay-call-to-action"></div>
         <h3 class="heading-style-3">Productos</h3>
     </section>
-    <div class="woocommerce-top-control wrapper">
-        <section class="boxed-sm">
-            <div class="container">
-                <div class="row">
-                    <div class="woocommerce-top-control">
-                        <p class="woocommerce-result-count">Showing 1 - 12 of 30 results</p>
-                        <form class="woocommerce-ordering select-custom-wrapper" method="get">
-                            <select class="orderby select-custom-wrapper" name="orderby">
-                <option value="menu_order" selected="selected">Default sorting</option>
-                <option value="popularity">Sort by popularity</option>
-                <option value="rating">Sort by average rating</option>
-                <option value="date">Sort by newness</option>
-                <option value="price">Sort by price: low to high</option>
-                <option value="price-desc">Sort by price: high to low</option>
-              </select>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
+
     <section class="box-sm">
         <div class="container">
             <div class="row main">
@@ -36,15 +16,14 @@
                             <div class="img-wrapper">
                                 <a [routerLink]="['../producto/', producto._id]">
                                     <img class="img-responsive" [src]="producto.img | imagenPipe: 'productos'" alt="{{producto.titulo}} thumbnail" />
-                                    <!-- <img class="img-responsive" src="{{imagenSerUrl}}/productos/{{producto.img}}" alt="{{producto.titulo}} thumbnail" /> -->
                                 </a>
-                                <div class="product-control-wrapper bottom-right">
-                                    <!-- <div class="wrapper-control-item">
+                                <!-- <div class="product-control-wrapper bottom-right">
+                                    <div class="wrapper-control-item">
                                         <a class="js-quick-view" data-toggle="modal" [attr.data-target]="'#' + producto._id">
                                             <a class="js-quick-view" href="#" type="button" data-toggle="modal" data-target="#quick-view-product">
                                             <span class="lnr lnr-eye"></span>
                                         </a>
-                                    </div> -->
+                                    </div>
                                     <div class="wrapper-control-item item-wish-list">
                                         <a class="js-wish-list js-notify-add-wish-list" href="#">
                                             <span class="lnr lnr-heart"></span>
@@ -55,14 +34,14 @@
                                             <span class="lnr lnr-cart"></span>
                                         </a>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <figcaption class="desc text-center">
                                 <h3>
                                     <a class="product-name" [routerLink]="['../producto/', producto._id]">{{producto.titulo}}</a>
                                 </h3>
                                 <span class="price">${{producto.precio_ahora}}</span><br>
-                                <span class="price">${{producto.precio_antes}}</span>
+                                <span class="price precioantes">${{producto.precio_antes}}</span>
                             </figcaption>
                         </div>
                     </figure>

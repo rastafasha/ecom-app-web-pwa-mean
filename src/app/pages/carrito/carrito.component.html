@@ -26,10 +26,30 @@
                     <div *ngFor="let item of carrito" class="d-sm-flex justify-content-between align-items-center my-4 pb-3 border-bottom">
 
                         <div class="media media-ie-fix d-block d-sm-flex align-items-center text-center text-sm-left">
-                            <a class="d-inline-block mx-auto mr-sm-4" [routerLink]="['../producto/',item.producto._id]" style="width: 10rem;"><img [src]="item.producto.img | imagenPipe: 'productos'" style="width: 100%;" alt="Product"></a>
+                            <div *ngIf="item.producto">
+                                <a class="d-inline-block mx-auto mr-sm-4" [routerLink]="['../producto/',item.producto._id]" style="width: 10rem;">
+                                    <img [src]="item.producto.img | imagenPipe: 'productos'" style="width: 100%;" alt="Product">
+                                </a>
+                            </div>
+                            <!-- <div *ngIf="item.curso">
+                                <a class="d-inline-block mx-auto mr-sm-4" [routerLink]="['../curso/',item.curso._id]" style="width: 10rem;">
+                                    <img [src]="item.curso.img | imagenPipe: 'cursos'" style="width: 100%;" alt="Product">
+                                </a>
+                            </div> -->
                             <div class="media-body pt-2">
-                                <h3 class="product-title font-size-base mb-2"><a [routerLink]="['../producto/',item.producto._id]">{{item.producto.titulo}}</a></h3>
-
+                                <div *ngIf="item.producto">
+                                    <h3 class="product-title font-size-base mb-2">
+                                        <a [routerLink]="['../producto/',item.producto._id]">{{item.producto.titulo}}</a>
+                                    </h3>
+                                </div>
+                                <!-- <div *ngIf="item.curso">
+                                    <h3 class="product-title font-size-base mb-2">
+                                        <a [routerLink]="['../curso/',item.curso._id]">{{item.curso.titulo}}</a>
+                                    </h3>
+                                </div> -->
+                                <!-- <ng-container *ngIf="item.curso.stock > 0">
+                                    <div class="font-size-lg text-accent pt-2">${{item.precio}}</div>
+                                </ng-container> -->
                                 <ng-container *ngIf="item.producto.stock > 0">
                                     <div class="font-size-sm"><span class="text-muted mr-2">{{item.producto.nombre_selector}}:</span>{{item.selector}}</div>
                                     <div class="font-size-sm"><span class="text-muted mr-2">COLOR:</span>
@@ -38,9 +58,11 @@
                                     </div>
                                     <div class="font-size-lg text-accent pt-2">${{item.precio}}</div>
                                 </ng-container>
+
                                 <ng-container *ngIf="item.producto.stock == 0">
                                     <span class="badge badge-danger">No hay stock del producto</span>
                                 </ng-container>
+
 
                             </div>
                         </div>
@@ -49,7 +71,9 @@
                                 <label class="font-weight-medium" for="quantity1">Cantidad</label>
                                 <input class="form-control" type="number" id="quantity1" readonly [value]="item.cantidad">
                             </div>
-                            <button class="btn btn-link px-0 text-danger" type="button" (click)="remove_producto(item._id)"><i class="czi-close-circle mr-2"></i><span class="font-size-sm">Eliminar</span></button>
+                            <button class="btn btn-link px-0 text-danger" type="button" (click)="remove_producto(item._id)">
+                              <i class="fa fa-trash-o mr-2"></i><span class="font-size-sm">Eliminar</span>
+                            </button>
                         </div>
 
                     </div>
@@ -58,14 +82,15 @@
                     <!-- Alert with bakground image -->
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="alert alert-bg-image alert-dismissible fade show text-center py-5" style="background-image: url(https://demo.createx.studio/cartzilla/img/components/alerts/alert-bg.jpg)" role="alert">
+                            <div class="alert alert-bg-image alert-dismissible fade show text-center py-5" style="background-image: url(./assets/images/background/silver-ultrabook-supermarket-trolley-yellow-background-concept-shopping-modern-online-internet-commerce-sites-copy-220746051.jpeg)"
+                                role="alert">
                                 <i class="czi-time d-block text-white my-4" style="font-size: 3rem;"></i>
                                 <h2 class="text-white text-shadow">Tu carrito actualmente esta vacío!</h2>
                                 <h4 class="text-white font-weight-normal text-shadow mb-4 pb-2">:'(</h4>
                                 <a [routerLink]="['/productos']" class="btn btn-primary mb-3">Ir a comprar</a>
                                 <button type="button" class="close text-white" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
                         </div>
                     </div>

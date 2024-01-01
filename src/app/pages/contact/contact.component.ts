@@ -4,7 +4,8 @@ import { Congeneral } from 'src/app/models/congeneral.model';
 import { CongeneralService } from 'src/app/services/congeneral.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment';
-
+import { ContactoService } from 'src/app/services/contacto.service';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -15,14 +16,27 @@ export class ContactComponent implements OnInit{
 
   configuraciones: Congeneral[]=[];
   configuracion: Congeneral;
-  url:string;
   configuracionDireccion:string;
+
+  public url;
+  public general;
+  public contacto = {
+    nombres:'',
+    correo: '',
+    telefono: '',
+    tema:'',
+    mensaje:''
+  };
+  public msm_success=false;
+  public msm_error=false;
 
 
   constructor(
     public configuracionService: CongeneralService,
     public activatedRoute: ActivatedRoute,
-    public sanitizer: DomSanitizer
+    private _contactoService : ContactoService,
+    public sanitizer: DomSanitizer,
+    private http: HttpClient
     ) {
       this.configuracion = this.configuracionService.congeneral;
     }
@@ -53,6 +67,70 @@ export class ContactComponent implements OnInit{
 
     return this.sanitizer.bypassSecurityTrustResourceUrl('https://www.google.com/maps/embed?' + mapa);
 }
+
+onSubmit(contactoForm){
+
+
+  if(!contactoForm.valid){
+    this.msm_error = true;
+    this.msm_success = false;
+  }else{
+    let data = {
+      nombres:contactoForm.value.nombres,
+      correo: contactoForm.value.correo,
+      telefono: contactoForm.value.telefono,
+      tema:contactoForm.value.tema,
+      mensaje:contactoForm.value.mensaje
+    }
+
+
+    this._contactoService.registro(data).subscribe(
+      response =>{
+
+        this.contacto = {
+          nombres:'',
+          correo: '',
+          telefono: '',
+          tema:'',
+          mensaje:''
+        }
+        this.msm_success = true;
+        this.msm_error = false;
+      },
+      error=>{
+
+        this.msm_success = false;
+        this.msm_error = true;
+      }
+    );
+
+
+
+  }
+
+  this.envioCorreo(contactoForm);
+
+
+}
+
+envioCorreo(contactoForm){
+
+  let data = {
+    nombres:contactoForm.value.nombres,
+    correo: contactoForm.value.correo,
+    telefono: contactoForm.value.telefono,
+    tema:contactoForm.value.tema,
+    mensaje:contactoForm.value.mensaje
+  }
+  console.log(data);
+  this.http.post('http://localhost:5000/api/contactos/send/', data ).subscribe(res=>{
+    console.log(res);
+
+
+  })
+}
+
+
 
 
 

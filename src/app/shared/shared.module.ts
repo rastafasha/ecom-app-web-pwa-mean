@@ -5,6 +5,7 @@ import { FooterComponent } from './footer/footer.component';
 import { SlidertopComponent } from './slidertop/slidertop.component';
 import { RouterModule } from '@angular/router';
 import { PipesModule } from '../pipes/pipes.module';
+import { PromocionComponent } from './promocion/promocion.component';
 
 
 
@@ -12,12 +13,14 @@ import { PipesModule } from '../pipes/pipes.module';
   declarations: [
     HeaderComponent,
     FooterComponent,
-    SlidertopComponent
+    SlidertopComponent,
+    PromocionComponent
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
-    SlidertopComponent
+    SlidertopComponent,
+    PromocionComponent
   ],
   imports: [
     CommonModule,

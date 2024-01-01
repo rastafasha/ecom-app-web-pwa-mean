@@ -14,6 +14,7 @@ import { ComponentsModule } from '../components/components.module';
 //pluggins
 
 import { NgxPaginationModule } from 'ngx-pagination';
+
 import { BlogDetailComponent } from './blog/blog-detail/blog-detail.component';
 import { BlogListComponent } from './blog/blog-list/blog-list.component';
 import { CursosComponent } from './cursos/cursos/cursos.component';
@@ -30,6 +31,7 @@ import { CarritoComponent } from './carrito/carrito.component';
 import { CategoriasComponent } from './categorias/categorias.component';
 import { AboutIndexComponent } from './nosotros/about-index/about-index.component';
 import { UserModule } from '../admin/user.module';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,8 @@ import { UserModule } from '../admin/user.module';
     PrivacypolicyComponent,
     CarritoComponent,
     PagesComponent,
-    CategoriasComponent
+    CategoriasComponent,
+    SearchComponent
 
   ],
   exports: [
@@ -66,7 +69,8 @@ import { UserModule } from '../admin/user.module';
     FaqComponent,
     PrivacypolicyComponent,
     CarritoComponent,
-    CategoriasComponent
+    CategoriasComponent,
+    SearchComponent
   ],
   imports: [
     FormsModule,

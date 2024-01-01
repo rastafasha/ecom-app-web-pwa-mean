@@ -14,6 +14,7 @@ export class SlidertopComponent implements OnInit {
   sliders: Slider[];
   imagenSerUrl = environment.mediaUrl;
 
+
   constructor(
     public sliderService: SliderService,
     public http: HttpClient
@@ -21,6 +22,7 @@ export class SlidertopComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerSliders();
+
   }
 
   obtenerSliders(){

@@ -6,6 +6,8 @@ import { map } from 'rxjs/operators';
 import { Usuario } from '../models/usuario.model';
 import { Hospital } from '../models/hospital.model';
 import { Medico } from '../models/medico.model';
+import { Producto } from '../models/producto.model';
+import { Curso } from '../models/curso.model';
 
 const base_url = environment.baseUrl;
 
@@ -36,14 +38,15 @@ export class BusquedasService {
     )
   }
 
-  private trasnformarHospitales(resultados: any[]): Hospital[]{
-    return resultados;
-  }
-  private trasnformarMedicos(resultados: any[]): Medico[]{
+  private trasnformarCursos(resultados: any[]): Curso[]{
     return resultados;
   }
 
-  buscar(tipo: 'usuarios'|'medicos'|'hospitales',
+  private trasnformarProductos(resultados: any[]): Producto[]{
+    return resultados;
+  }
+
+  buscar(tipo: 'usuarios'|'productos'|'cursos',
         termino: string
         ){
     const url = `${base_url}/todo/coleccion/${tipo}/${termino}`;
@@ -54,11 +57,11 @@ export class BusquedasService {
             case 'usuarios':
               return this.trasnformarUsuarios(resp.resultados)
 
-              case 'hospitales':
-                return this.trasnformarHospitales(resp.resultados)
+              case 'cursos':
+                return this.trasnformarCursos(resp.resultados)
 
-                case 'medicos':
-                return this.trasnformarMedicos(resp.resultados)
+                case 'productos':
+                return this.trasnformarProductos(resp.resultados)
               default:
                 return[];
           }
@@ -69,6 +72,6 @@ export class BusquedasService {
 
   searchGlobal(termino: string){
     const url = `${base_url}/todo/${termino}`;
-    return this.http.get<any[]>(url, this.headers)
+    return this.http.get<any[]>(url)
   }
 }

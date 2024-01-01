@@ -22,8 +22,10 @@ export class CategoriasComponent implements OnInit {
 
   categories: Categoria[];
   categoria: Categoria;
+  categoriaId: any;
 
   nombre:string;
+  id:string;
 
   error!: string;
 
@@ -52,17 +54,26 @@ export class CategoriasComponent implements OnInit {
 
     // this.obtenerCategoriasByNombre();
 
-    this.activatedRoute.params.subscribe(
-      params=>{
-        this.nombre = params['nombre'];
+    // this.activatedRoute.params.subscribe( ({id}) => this.obtenerItemCategoria(id));
 
-        this.obtenerItemCategoria();
-      }
-    );
+    // this.activatedRoute.params.subscribe(
+    //   params=>{
+    //     this.nombre = params['nombre'];
+
+    //     // this.obtenerItemCategoria();
+    //   }
+    // );
+
+    this.activatedRoute.params.subscribe((resp:any)=>{
+      console.log(resp);
+      this.categoriaId = resp;
+      this.obtenerItemCategoria();
+      
+    });
 
   }
   obtenerItemCategoria(){debugger
-    this.productoService.listar_productoCat(this.nombre).subscribe(
+    this.productoService.listar_productoCat(this.categoriaId).subscribe(
       res => {
         this.productos = res;
         console.log(this.productos);

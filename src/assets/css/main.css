@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import url("main-template.css");
 @import url("ursiStyle.css");
+@import url("slider.css");
 :root {
     --dark-brown: #2c180e;
     --star-color: #fea569;
@@ -106,7 +107,7 @@ iframe .videom {
 
 .cartlist .subtotal {
     position: absolute;
-    bottom: 30px;
+    bottom: 40px;
     background-color: #f2f2f2;
     width: 100%;
     left: 0;
@@ -118,4 +119,41 @@ iframe .videom {
     position: absolute;
     bottom: 0px;
     left: 0;
+}
+
+.contact .map-canvas,
+.mapa {
+    height: 450px;
+    margin-bottom: 40px;
+    width: 100% !important;
+}
+
+.widget-social i {
+    font-size: 16px;
+}
+
+.carousel-inner .info {
+    display: flex;
+    align-content: center;
+    position: absolute;
+    align-items: center;
+    flex-direction: column;
+    left: 43%;
+    top: 43%;
+}
+
+.carousel-inner img {
+    width: -webkit-fill-available;
+}
+
+.promocion {
+    background-color: cornflowerblue;
+}
+
+.promocion .countdown {
+    display: flex;
+    background: #fff;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
 }

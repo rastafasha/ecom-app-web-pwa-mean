@@ -8,93 +8,123 @@
         <h3 class="heading-style-3">Contact Us</h3>
     </section>
     <section class="boxed-sm">
-        <div class="container">
-            <div class="row">
-                <div class="row icon-box-contact-wrapper">
-                    <div class="row main">
-                        <div class="col-md-10">
-                            <div class="col-md-4">
-                                <div class="icon-box">
-                                    <div *ngIf="configuracion.direccion">
-                                        <i class="fa fa-map-marker"></i>
-                                        <p>{{configuracion.direccion}}</p>
-                                    </div>
-                                    <div *ngIf="configuracion.horarios">
-                                        <p>{{configuracion.horarios}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="icon-box">
-                                    <div *ngIf="configuracion.telefono_uno">
-                                        <a href="tel:{{configuracion.telefono_uno}} ">
-                                            <i class="fa fa-mobile"></i><br> {{configuracion.telefono_uno}}
-                                        </a>
 
-                                    </div>
-                                    <div *ngIf="configuracion.telefono_dos">
-                                        <a href="tel:{{configuracion.telefono_dos}} ">
-                                      {{configuracion.telefono_dos}}</a>
+        <div class="container" style="margin: 30px;">
 
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="col-md-4">
-                                <div class="icon-box">
-                                    <div *ngIf="configuracion.email_uno">
-                                        <a href="mailto:{{configuracion.email_uno}} ">
-                                            <i class="fa fa-envelope-o"></i><br> {{configuracion.email_uno}} </a>
-
-                                    </div>
-                                    <div *ngIf="configuracion.email_dos">
-                                        <a href="mailto:{{configuracion.email_dos}} ">
-                                      {{configuracion.email_dos}} </a>
-
-                                    </div>
-                                </div>
+            <form class="mb-3" #contactoForm="ngForm" (ngSubmit)="onSubmit(contactoForm)">
 
 
-
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="widget-social align-left">
-                                <ul>
-                                    <li *ngIf="configuracion.facebook">
-                                        <a class="facebook" data-toggle="tooltip" title="Facebook" target="_blank" href="{{configuracion.facebook}}">
-                                            <i class="fa fa-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <!-- <li *ngIf="configuraciones[0].pinterest">
-                                        <a class="pinterest" data-toggle="tooltip" title="Pinterest" target="_blank" href="{{configuraciones[0].pinterest}}">
-                                            <i class="fa fa-pinterest"></i>
-                                        </a>
-                                    </li> -->
-                                    <li *ngIf="configuracion.twitter">
-                                        <a class="twitter" data-toggle="tooltip" title="Twitter" target="_blank" href="{{configuracion.twitter}}">
-                                            <i class="fa fa-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li *ngIf="configuracion.youtube">
-                                        <a class="youtube" data-toggle="tooltip" title="Youtube" target="_blank" href="{{configuracion.youtube}}">
-                                            <i class="fa fa-youtube"></i>
-                                        </a>
-                                    </li>
-                                    <li *ngIf="configuracion.instagram">
-                                        <a class="instagram" data-toggle="tooltip" title="Instagram" target="_blank" href="{{configuracion.instagram}}">
-                                            <i class="fa fa-instagram"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                        </div>
-
+                <div class="col-sm-12" *ngIf="msm_success">
+                    <div class="alert alert-success alert-dismissible  show" role="alert">
+                        Se envió su mensaje a soporte satisfactoriamente.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
                     </div>
                 </div>
-            </div>
+                <div class="col-sm-12" *ngIf="msm_error">
+                    <div class="alert alert-danger alert-dismissible  show" role="alert">
+                        Ocurrió un error al enviar la solicitud, vuelva a intentar.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-8">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="form-group">
+                            <label for="cf-name">Nombres y apellidos:&nbsp;<span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" id="cf-name" placeholder="John Doe" required name="nombres" [(ngModel)]="contacto.nombres">
+
+                        </div>
+                    </div>
+                    <div class=" col-xs-12 col-sm-6">
+                        <div class="form-group">
+                            <label for="cf-email">Correo:&nbsp;<span class="text-danger">*</span></label>
+                            <input class="form-control" type="email" id="cf-email" placeholder="johndoe@email.com" required name="correo" [(ngModel)]="contacto.correo">
+
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="form-group">
+                            <label for="cf-phone">Telefono:&nbsp;<span class="text-danger">*</span></label>
+                            <input class="form-control" type="number" id="cf-phone" placeholder="+1 (212) 00 000 000" required name="telefono" [(ngModel)]="contacto.telefono">
+
+                        </div>
+                    </div>
+                    <div class=" col-xs-12 col-sm-6">
+                        <div class="form-group">
+                            <label for="cf-subject">Tema:</label>
+                            <input class="form-control" type="text" id="cf-subject" placeholder="Tema de tu solicitud" name="tema" [(ngModel)]="contacto.tema">
+                        </div>
+                    </div>
+                    <div class=" col-xs-12">
+                        <div class="form-group">
+                            <label for="cf-message">Mensaje:&nbsp;<span class="text-danger">*</span></label>
+                            <textarea class="form-control" id="cf-message" rows="6" placeholder="Escribe los detalles de tu solicitud" required name="mensaje" [(ngModel)]="contacto.mensaje"></textarea>
+
+                        </div>
+                        <button class="btn btn-primary" type="submit">Enviar mensaje</button>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <div *ngIf="configuracion.direccion">
+                        <p><i class="fa fa-map-marker"></i> &nbsp; {{configuracion.direccion}}</p>
+                    </div>
+                    <div *ngIf="configuracion.horarios">
+                        <p><i class="fa fa-clock-o"></i> &nbsp;{{configuracion.horarios}}</p>
+                    </div>
+                    <div class="widget-social">
+                        <ul>
+                            <li *ngIf="configuracion.facebook">
+                                <a class="facebook" data-toggle="tooltip" title="Facebook" target="_blank" href="{{configuracion.facebook}}">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                            </li>
+                            <li *ngIf="configuracion.twitter">
+                                <a class="twitter" data-toggle="tooltip" title="Twitter" target="_blank" href="{{configuracion.twitter}}">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li *ngIf="configuracion.youtube">
+                                <a class="youtube" data-toggle="tooltip" title="Youtube" target="_blank" href="{{configuracion.youtube}}">
+                                    <i class="fa fa-youtube"></i>
+                                </a>
+                            </li>
+                            <li *ngIf="configuracion.instagram">
+                                <a class="instagram" data-toggle="tooltip" title="Instagram" target="_blank" href="{{configuracion.instagram}}">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div *ngIf="configuracion.telefono_uno">
+                        <a href="tel:{{configuracion.telefono_uno}} ">
+                            <i class="fa fa-phone"></i> &nbsp; {{configuracion.telefono_uno}}
+                        </a>
+                    </div>
+                    <div *ngIf="configuracion.telefono_dos">
+                        <a href="tel:{{configuracion.telefono_dos}} ">
+                            <i class="fa fa-phone"></i> &nbsp;{{configuracion.telefono_dos}}</a>
+                    </div>
+
+                    <div *ngIf="configuracion.email_uno">
+                        <a href="mailto:{{configuracion.email_uno}} ">
+                            <i class="fa fa-envelope-o"></i>&nbsp; {{configuracion.email_uno}} </a>
+                    </div>
+                    <div *ngIf="configuracion.email_dos">
+                        <a href="mailto:{{configuracion.email_dos}} ">
+                            <i class="fa fa-envelope-o"></i>&nbsp;{{configuracion.email_dos}} </a>
+                    </div>
+
+                </div>
+
+
+
+            </form>
         </div>
+
+        <!-- mapa -->
         <div class="container" *ngIf="configuracion.iframe_mapa">
             <div class="row">
                 <div class="map-canvas" id="js-map-canvas">
@@ -102,44 +132,7 @@
                 </div>
             </div>
         </div>
-        <div class="container" *ngIf="!configuracion.iframe_mapa">
-            NO hay mapa
-        </div>
-
-        <div class="container">
-            <div class="row form-contact">
-                <!-- <app-contact-form></app-contact-form> -->
-                <!-- <div class="row main">
-                    <form>
-                        <div class="col-md-12">
-                            <div class="form-group organic-form xs-radius">
-                                <textarea class="form-control" placeholder="Your Message" rows="6"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group organic-form xs-radius">
-                                <input class="form-control" placeholder="Your Name">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group organic-form xs-radius">
-                                <input class="form-control" placeholder="Your Email" type="email">
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group organic-form xs-radius">
-                                <input class="form-control" placeholder="Phone Number">
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group organic-form xs-radius">
-                                <button class="btn btn-brand pill">SEND EMAIL</button>
-                            </div>
-                        </div>
-                    </form>
-                </div> -->
-            </div>
-        </div>
+        <!-- mapa -->
     </section>
 </div>
 <app-footer></app-footer>

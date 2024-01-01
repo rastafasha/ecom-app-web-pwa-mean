@@ -19,6 +19,7 @@ declare var $:any;
 import { WebSocketService } from 'src/app/services/web-socket.service';
 import * as io from "socket.io-client";
 import { Direccion } from '../../models/direccion.model';
+import { CursoService } from 'src/app/services/curso.service';
 
 @Component({
   selector: 'app-carrito',
@@ -44,6 +45,7 @@ export class CarritoComponent implements OnInit {
   public data_save_carrito;
   public msm_error = '';
   public productos : any = {};
+  public cursos : any = {};
 
   public paypal;
 
@@ -52,6 +54,8 @@ export class CarritoComponent implements OnInit {
   public precio_envio;
 
   public socket = io(environment.soketServer);
+
+  public no_direccion = 'no necesita direccion';
 
 
   //DATA
@@ -78,6 +82,7 @@ export class CarritoComponent implements OnInit {
     private _direccionService :DireccionService,
     private _ventaService :VentaService,
     private webSocketService: WebSocketService,
+    private cursoService: CursoService
 
   ) {
     this.identity = _userService.usuario;
@@ -107,6 +112,12 @@ export class CarritoComponent implements OnInit {
             //VALIR STOCK DE PRODUCTOS
             this.data_venta.detalles.forEach(element => {
                 if(element.producto.stock == 0){
+                  this.error_stock = true;
+                }else{
+                  this.error_stock = false;
+                }
+
+                if(element.curso.stock == 0){
                   this.error_stock = true;
                 }else{
                   this.error_stock = false;
@@ -159,6 +170,15 @@ export class CarritoComponent implements OnInit {
                       }
                     );
 
+                    this.cursoService.aumentar_ventas(element.curso._id).subscribe(
+                      response =>{
+                      },
+                      error=>{
+                        console.log(error);
+
+                      }
+                    );
+
 
 
                 });
@@ -197,6 +217,24 @@ export class CarritoComponent implements OnInit {
           }
         );
     });
+  }
+
+  getCursos(){
+    this.cursoService.getCursos().subscribe(
+      response =>{
+        this.cursos = response;
+
+        if(this.cursos.length >= 1){
+          this.cursos.forEach(element => {
+            this.cursos.push(element.titulo);
+          });
+        }
+
+      },
+      error=>{
+
+      }
+    );
   }
 
   carrito_real_time(){
@@ -266,12 +304,13 @@ export class CarritoComponent implements OnInit {
           this.subtotal = Math.round(this.subtotal + (element.precio * element.cantidad));
           this.data_detalle.push({
             producto : element.producto,
+            curso : element.curso,
             cantidad: element.cantidad,
             precio: Math.round(element.precio),
             color: element.color,
             selector : element.selector
           })
-
+          console.log(this.carrito);
 
         });
         this.subtotal = Math.round(this.subtotal + parseInt(this.precio_envio));
@@ -282,7 +321,10 @@ export class CarritoComponent implements OnInit {
 
       }
     );
+    this.getCursos();
   }
+
+
 
   remove_producto(id){
     this._carritoService.remove_carrito(id).subscribe(
@@ -292,6 +334,7 @@ export class CarritoComponent implements OnInit {
           response =>{
             this.carrito = response;
             this.socket.emit('save-carrito', {new:true});
+            this.listar_carrito();
           },
           error=>{
             console.log(error);
@@ -305,6 +348,7 @@ export class CarritoComponent implements OnInit {
             this.carrito.forEach(element => {
               this.data_detalle.push({
                 producto : element.producto,
+                curso : element.curso,
                 cantidad: element.cantidad,
                 precio: element.precio,
                 color: element.color,
@@ -335,11 +379,9 @@ export class CarritoComponent implements OnInit {
       response =>{
         this.data_direccion = response;
         console.log(this.data_direccion);
-      },
-      error=>{
-
       }
     );
+
   }
 
   get_data_cupon(event,cupon){

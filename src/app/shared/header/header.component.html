@@ -10,9 +10,9 @@
                     <a routerLink="/app/about" routerLinkActive="active">About</a>
                 </li>
 
-                <li>
+                <!-- <li>
                     <a routerLink="/app/gallery" routerLinkActive="active">Gallery</a>
-                </li>
+                </li> -->
                 <li>
                     <a routerLink="/app/blogs" routerLinkActive="active">Blog</a>
                 </li>
@@ -41,8 +41,9 @@
                 <img class="img-responsive" src="./assets/images/logo.png" alt="" />
             </a>
             <div class="header-3-inner">
+                <!-- buscador  -->
                 <div class="widget widget-control-header widget-search-header">
-                    <a class="btn-open-search-form js-open-search-form-header" href="#">
+                    <a class="btn-open-search-form js-open-search-form-header" (click)="openBuscar()">
                         <span class="lnr lnr-magnifier"></span>
                     </a>
                     <div class="form-outer">
@@ -50,16 +51,15 @@
                           <span class="lnr lnr-cross"></span>
                         </button>
 
-                        <!-- buscador -->
-                        <form>
-                            <input placeholder="Search" />
-                            <button class="search">
-                            <span class="lnr lnr-magnifier"></span>
-                          </button>
+                        <!-- buscador form -->
+                        <form class="search" (submit)="search_by_filter(txtTermino.value)">
+                            <input type="text" class="form-control" placeholder="Buscar " #txtTermino>
+
                         </form>
-                        <!-- buscador -->
+                        <!-- buscador form-->
                     </div>
                 </div>
+                <!-- buscador -->
                 <!-- menu movil -->
                 <nav>
                     <ul class="menu hidden-xs">
@@ -76,9 +76,9 @@
                             <a [routerLink]="['/app/about']" routerLinkActive="active">About</a>
                         </li>
 
-                        <li>
+                        <!-- <li>
                             <a [routerLink]="['/app/gallery']" routerLinkActive="active">Gallery</a>
-                        </li>
+                        </li> -->
                         <li>
                             <a [routerLink]="['/app/blogs']" routerLinkActive="active">Blog</a>
                         </li>
@@ -89,7 +89,7 @@
                             <a [routerLink]="['/app/contact']" routerLinkActive="active">Contact</a>
                         </li>
                         <li>
-                            <a href="#">My Account</a>
+                            <a href="javascript:void(0)">My Account</a>
                             <ul>
                                 <li>
                                     <a [routerLink]="['/app/my-account']" routerLinkActive="active">My Profile</a>
@@ -104,6 +104,7 @@
                 </nav>
                 <!-- menu movil -->
                 <aside class="right">
+                    <!-- Cart menu-->
                     <div *ngIf="identity" class="navbar-tool dropdown ml-3">
                         <button type="button" class="btn btn-outline-success btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="navbar-tool-label">{{carrito.cantidad}}</span> &nbsp;<i class="navbar-tool-icon czi-cart"></i>&nbsp;<small>Mi carrito</small>&nbsp; ${{subtotal}}
@@ -120,10 +121,24 @@
                                           <span aria-hidden="true">&times;</span>
                                         </button>
                                         <div class="media align-items-center">
-                                            <a class="d-block mr-2" [routerLink]="['../producto/',item.producto._id]"><img width="64" [src]="item.producto.img | imagenPipe: 'productos'" alt="Product" /></a>
-                                            <div class="media-body">
-                                                <h6 class="widget-product-title"><a [routerLink]="['../producto/',item.producto._id]">{{item.producto.titulo.substr(0,25)}}</a></h6>
-                                                <div class="widget-product-meta"><span class="text-accent mr-2">${{item.precio}}</span><span class="text-muted">x {{item.cantidad}}</span></div>
+                                            <div *ngIf="item.producto" style="display:flex">
+                                                <a class="d-block mr-2" [routerLink]="['../producto/',item.producto._id]">
+                                                    <img width="64" [src]="item.producto.img | imagenPipe: 'productos'" alt="Product" />
+                                                </a>
+                                                <div class="media-body">
+                                                    <h6 class="widget-product-title"><a [routerLink]="['../producto/',item.producto._id]">{{item.producto.titulo.substr(0,25)}}</a></h6>
+                                                    <div class="widget-product-meta"><span class="text-accent mr-2">${{item.precio}}</span><span class="text-muted">x {{item.cantidad}}</span></div>
+                                                </div>
+                                            </div>
+
+                                            <div *ngIf="item.curso" style="display:flex">
+                                                <a class="d-block mr-2" [routerLink]="['../curso/',item.curso._id]">
+                                                    <img width="64" [src]="item.curso.img | imagenPipe: 'cursos'" alt="Product" />
+                                                </a>
+                                                <div class="media-body">
+                                                    <h6 class="widget-product-title"><a [routerLink]="['../curso/',item.curso._id]">{{item.curso.titulo.substr(0,25)}}</a></h6>
+                                                    <div class="widget-product-meta"><span class="text-accent mr-2">${{item.precio}}</span><span class="text-muted">x {{item.cantidad}}</span></div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -142,7 +157,9 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Cart menu-->
 
+                    <!-- menu hamburguer-->
 
                     <div class="widget widget-control-header hidden-lg hidden-md hidden-sm">
                         <a class="navbar-toggle js-offcanvas-has-events" type="button" (click)="openMenu()">
@@ -151,6 +168,7 @@
                             <span class="icon-bar"></span>
                         </a>
                     </div>
+                    <!-- menu hamburguer-->
                 </aside>
             </div>
         </header>
@@ -169,9 +187,9 @@
                     <a routerLink="/about" routerLinkActive="active">About</a>
                 </li>
 
-                <li>
+                <!-- <li>
                     <a routerLink="/gallery" routerLinkActive="active">Gallery</a>
-                </li>
+                </li> -->
                 <li>
                     <a routerLink="/blogs" routerLinkActive="active">Blog</a>
                 </li>
@@ -188,22 +206,29 @@
                 <img class="img-responsive" src="./assets/images/logo.png" alt="" />
             </a>
             <div class="header-3-inner">
+                <!-- buscador  -->
                 <div class="widget widget-control-header widget-search-header">
-                    <a class="btn-open-search-form js-open-search-form-header" href="#">
+                    <a class="btn-open-search-form js-open-search-form-header" (click)="openBuscar()">
                         <span class="lnr lnr-magnifier"></span>
                     </a>
                     <div class="form-outer">
                         <button class="btn-close-form-search-header js-close-search-form-header">
-          <span class="lnr lnr-cross"></span>
-        </button>
-                        <form>
-                            <input placeholder="Search" />
-                            <button class="search">
-            <span class="lnr lnr-magnifier"></span>
-          </button>
+                        <span class="lnr lnr-cross"></span>
+                      </button>
+
+                        <!-- buscador form -->
+                        <form class="search" (submit)="search_by_filter(txtTermino.value)">
+                            <input type="text" class="form-control" placeholder="Buscar " #txtTermino>
+
                         </form>
+                        <!-- buscador form-->
                     </div>
                 </div>
+                <!-- buscador -->
+                <!-- <form class="search" (submit)="search_by_filter(txtTermino.value)">
+                  <input type="text" class="form-control" placeholder="Buscar " #txtTermino>
+                  <a class="srh-btn"><i class="ti-close"></i></a>
+              </form> -->
                 <nav>
                     <ul class="menu hidden-xs">
                         <li>
@@ -219,9 +244,9 @@
                             <a [routerLink]="['/about']" routerLinkActive="active">About</a>
                         </li>
 
-                        <li>
+                        <!-- <li>
                             <a [routerLink]="['/gallery']" routerLinkActive="active">Gallery</a>
-                        </li>
+                        </li> -->
                         <li>
                             <a [routerLink]="['/blogs']" routerLinkActive="active">Blog</a>
                         </li>

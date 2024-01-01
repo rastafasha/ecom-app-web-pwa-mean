@@ -51,9 +51,9 @@ export class CarritoService {
         );
   }
 
-  remove_carrito(_id:string):Observable<any>{
+  remove_carrito(id:string):Observable<any>{
 
-    const url = `${base_url}/carritos/delete/${_id}`;
+    const url = `${base_url}/carritos/delete/${id}`;
     return this._http.delete(url, this.headers);
   }
 
